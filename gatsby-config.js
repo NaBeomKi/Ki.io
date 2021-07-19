@@ -41,5 +41,18 @@ module.exports = {
       },
       __key: "pages",
     },
+    {
+      resolve: "gatsby-plugin-web-font-loader",
+      options: {
+        google: {
+          families: [
+            `Mulish:n4,i4,n7,i7`,
+            `Noto Sans KR:n4,n7`,
+            `Fira Code`,
+            `Ubuntu Mono`,
+          ],
+        },
+      },
+    },
   ],
 };
