@@ -1,10 +1,12 @@
 module.exports = {
   siteMetadata: {
-    siteUrl: "https://www.yourdomain.tld",
-    title: "Ki's Blog",
+    siteUrl: "https://beomki69.github.io/",
+    title: "Ki's blog",
+    description: "Ki's Tech blog",
+    image: "/indexTumb.png",
+    author: "Ki",
   },
   plugins: [
-    "gatsby-plugin-netlify-cms",
     "gatsby-plugin-styled-components",
     "gatsby-plugin-image",
     // {
@@ -62,5 +64,7 @@ module.exports = {
         },
       },
     },
+    `gatsby-plugin-emotion`,
+    `gatsby-plugin-fontawesome-css`,
   ],
 };
