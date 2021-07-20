@@ -1,5 +1,9 @@
 import tw from "twin.macro";
 
+export const H1 = tw.h1`
+    mb-3 text-3xl
+`;
+
 export const H2 = tw.h2`
     mb-2 text-2xl
 `;

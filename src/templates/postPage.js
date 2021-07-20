@@ -1,8 +1,22 @@
 import React from "react";
 import { graphql } from "gatsby";
+import { MDXRenderer } from "gatsby-plugin-mdx";
+import { App, Post } from "../components";
 
 const postPage = ({ pageContext, data }) => {
-  return <div>post</div>;
+  const {
+    mdx: {
+      body,
+      frontmatter: { date, title, tags, featureImage },
+    },
+  } = data;
+  return (
+    <App>
+      <Post title={title} date={date} tags={tags} featureImage={featureImage}>
+        <MDXRenderer>{body}</MDXRenderer>
+      </Post>
+    </App>
+  );
 };
 
 export default postPage;
@@ -18,7 +32,9 @@ export const pageQuery = graphql`
         title
         tags
         featureImage {
-          publicURL
+          childImageSharp {
+            gatsbyImageData
+          }
         }
       }
     }

@@ -4,4 +4,5 @@ export * from "./ContentCard";
 export * from "./Header";
 export * from "./FaIcon";
 export * from "./FeatureImage";
+export * from "./Post";
 export * from "./Seo";

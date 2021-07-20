@@ -26,11 +26,9 @@ export const Header = () => {
         <nav>
           <HeaderListsContainer>
             <HeaderList>
-              <h1>
-                <NavLink to="/">
-                  <LogoImg src={data.logo.publicURL} alt="Home" />
-                </NavLink>
-              </h1>
+              <NavLink to="/">
+                <LogoImg src={data.logo.publicURL} alt="Home" />
+              </NavLink>
             </HeaderList>
           </HeaderListsContainer>
         </nav>
