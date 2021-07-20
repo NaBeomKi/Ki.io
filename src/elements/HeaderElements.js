@@ -2,7 +2,7 @@ import { Link } from "gatsby";
 import tw from "twin.macro";
 
 export const HeaderWrapper = tw.div`
-    fixed h-20 left-0 top-0 right-0 shadow-md bg-white
+    fixed h-20 left-0 top-0 right-0 shadow-md bg-white z-50
 `;
 
 export const HeaderContainer = tw.header`
@@ -18,7 +18,7 @@ export const HeaderList = tw.li`
 `;
 
 export const NavLink = tw(Link)`
-    opacity-30 transition-opacity duration-300 hover:opacity-100 focus:opacity-100
+    opacity-60 transition-opacity duration-300 hover:opacity-100 focus:opacity-100
 `;
 
 export const LogoImg = tw.img`
