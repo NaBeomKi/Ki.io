@@ -41,7 +41,17 @@ module.exports = {
       resolve: "gatsby-plugin-mdx",
       options: {
         extensions: [`.mdx`, `.md`],
-        gatsbyRemarkPlugins: [`gatsby-remark-autolink-headers`],
+        gatsbyRemarkPlugins: [
+          `gatsby-remark-autolink-headers`,
+          {
+            resolve: "gatsby-remark-copy-relative-linked-files",
+            options: {
+              ignoreFileExtensions: [".md", ".pdf", ".d.ts"],
+              filename: ({ hash, name, extension }) =>
+                `${name}-${hash}.${extension}`,
+            },
+          },
+        ],
       },
     },
     "gatsby-plugin-sharp",
