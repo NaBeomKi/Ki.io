@@ -1,16 +1,18 @@
 import React from "react";
 import {
+  PostWrapper,
   PostContainer,
   PostHeader,
   H1,
   Span,
   ButtonsContainer,
 } from "../elements";
-import { Button, FeatureImg } from "./index";
+import { Button, FeatureImg, Toc } from "./index";
 
-export const Post = ({ children, title, date, tags, featureImage }) => {
+export const Post = ({ children, title, date, tags, featureImage, toc }) => {
   return (
-    <div>
+    <PostWrapper>
+      {toc.items && <Toc toc={toc} />}
       <PostHeader>
         <H1>{title}</H1>
         {tags && (
@@ -26,6 +28,6 @@ export const Post = ({ children, title, date, tags, featureImage }) => {
       </PostHeader>
       <FeatureImg featureImage={featureImage} />
       <PostContainer>{children}</PostContainer>
-    </div>
+    </PostWrapper>
   );
 };

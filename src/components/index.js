@@ -7,3 +7,4 @@ export * from "./FaIcon";
 export * from "./FeatureImage";
 export * from "./Post";
 export * from "./Seo";
+export * from "./Toc";

@@ -7,12 +7,19 @@ const postPage = ({ pageContext, data }) => {
   const {
     mdx: {
       body,
+      tableOfContents,
       frontmatter: { date, title, tags, featureImage },
     },
   } = data;
   return (
-    <App>
-      <Post title={title} date={date} tags={tags} featureImage={featureImage}>
+    <App title={title}>
+      <Post
+        title={title}
+        date={date}
+        tags={tags}
+        featureImage={featureImage}
+        toc={tableOfContents}
+      >
         <MDXRenderer>{body}</MDXRenderer>
       </Post>
     </App>

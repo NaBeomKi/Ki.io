@@ -1,5 +1,7 @@
 import tw, { styled } from "twin.macro";
 
+export const PostWrapper = tw.div`relative`;
+
 export const PostHeader = tw.section`
     mb-5
 `;
@@ -69,7 +71,7 @@ export const PostContainer = styled.section`
   }
 
   blockquote {
-    ${tw`p-4 border-l-4 border-solid border-blue-300 bg-gray-200`}
+    ${tw`mb-4 p-4 border-l-4 border-solid border-blue-300 bg-gray-200`}
     & > p {
       ${tw`last:m-0 text-xl leading-9`}
     }

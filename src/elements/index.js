@@ -4,4 +4,5 @@ export * from "./CodeElements";
 export * from "./ContentElements";
 export * from "./HeaderElements";
 export * from "./PostElements";
+export * from "./TocElements";
 export * from "./TypographyElements";
