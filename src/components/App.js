@@ -1,5 +1,5 @@
 import React from "react";
-import { ContentWrapper, ContentContainer } from "../elements";
+import { ContentWrapper } from "../elements";
 import { Seo, Header } from "./index";
 
 export const App = ({ children, title, imgUrl, excerpt }) => {
@@ -7,9 +7,9 @@ export const App = ({ children, title, imgUrl, excerpt }) => {
     <div>
       <Seo title={title} image={imgUrl} description={excerpt} />
       <Header />
-      <ContentWrapper>
-        <ContentContainer>{children}</ContentContainer>
-      </ContentWrapper>
+      <div>
+        <ContentWrapper>{children}</ContentWrapper>
+      </div>
     </div>
   );
 };

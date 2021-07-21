@@ -1,7 +1,5 @@
 import tw, { styled } from "twin.macro";
 
-export const PostWrapper = tw.div``;
-
 export const PostHeader = tw.section`
     mb-5
 `;
