@@ -3,7 +3,7 @@ import tw, { styled } from "twin.macro";
 export const PostWrapper = tw.div`relative`;
 
 export const PostHeader = tw.section`
-    mb-5
+    mb-6
 `;
 
 export const PostContainer = styled.section`
@@ -23,27 +23,27 @@ export const PostContainer = styled.section`
   }
 
   h1 {
-    ${tw`text-5xl`}
-  }
-
-  h2 {
     ${tw`text-4xl`}
   }
 
-  h3 {
+  h2 {
     ${tw`text-3xl`}
   }
 
-  h4 {
+  h3 {
     ${tw`text-2xl`}
   }
 
-  h5 {
+  h4 {
     ${tw`text-xl`}
   }
 
-  h6 {
+  h5 {
     ${tw`text-lg`}
+  }
+
+  h6 {
+    ${tw`text-base`}
   }
 
   p {

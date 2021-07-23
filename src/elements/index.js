@@ -1,6 +1,7 @@
 export * from "./ButtonElements";
 export * from "./CardElements";
 export * from "./CodeElements";
+export * from "./CommentElements";
 export * from "./ContentElements";
 export * from "./HeaderElements";
 export * from "./PaginationElements";

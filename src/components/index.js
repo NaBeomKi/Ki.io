@@ -1,6 +1,7 @@
 export * from "./App";
 export * from "./Button";
 export * from "./Code";
+export * from "./Comments";
 export * from "./ContentCard";
 export * from "./Header";
 export * from "./FaIcon";

@@ -22,6 +22,10 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
             }
           }
         }
+        group(field: frontmatter___tags) {
+          fieldValue
+          totalCount
+        }
       }
     }
   `);
@@ -47,4 +51,13 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       },
     });
   });
+
+  // Create pages for each tag.
+  // result.data.allMdx.group.forEach((tag) => {
+  //   const { fieldValue, totalCount } = tag;
+  //   createPage({
+  //     path: `/tags/${fieldValue}`,
+  //     component: "",
+  //   });
+  // });
 };

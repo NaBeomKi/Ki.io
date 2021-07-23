@@ -13,9 +13,11 @@ export const ContentCard = ({
 }) => {
   return (
     <CardWrapper>
-      <Link to={`/posts/${slug}`}>
-        <FeatureImg featureImage={featureImage} />
-      </Link>
+      {featureImage && (
+        <Link to={`/posts/${slug}`}>
+          <FeatureImg featureImage={featureImage} />
+        </Link>
+      )}
       <CardInfoWrapper>
         <Link to={`/posts/${slug}`}>
           <H2>{title}</H2>

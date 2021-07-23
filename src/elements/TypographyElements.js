@@ -1,15 +1,15 @@
 import tw from "twin.macro";
 
 export const H1 = tw.h1`
-    mb-3 text-3xl
+    mb-6 text-4xl font-bold
 `;
 
 export const H2 = tw.h2`
-    mb-2 text-2xl
+    mb-4 text-3xl
 `;
 
 export const P = tw.p`
-    mb-3 text-gray-500 leading-tight
+    mb-4 text-gray-500 leading-tight
 `;
 
 export const Span = tw.span`

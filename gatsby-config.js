@@ -5,6 +5,7 @@ module.exports = {
     description: "Ki's Tech blog",
     image: "/indexTumb.png",
     author: "Ki",
+    utterancesRepo: "beomki69/blog-comments",
   },
   plugins: [
     "gatsby-plugin-styled-components",
