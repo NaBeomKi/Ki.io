@@ -1,33 +1,28 @@
 import React from "react";
-import {
-  PostWrapper,
-  PostContainer,
-  PostHeader,
-  H1,
-  Span,
-  ButtonsContainer,
-} from "../elements";
-import { Button, FeatureImg, Toc } from "./index";
+import { PostWrapper, PostContainer, PostHeader, H1, Span } from "../elements";
+import { FeatureImg, Tags, Toc, Pagination } from "./index";
 
-export const Post = ({ children, title, date, tags, featureImage, toc }) => {
+export const Post = ({
+  children,
+  title,
+  date,
+  tags,
+  featureImage,
+  toc,
+  previous,
+  next,
+}) => {
   return (
     <PostWrapper>
       {toc.items && <Toc toc={toc} />}
       <PostHeader>
         <H1>{title}</H1>
-        {tags && (
-          <ButtonsContainer>
-            {tags.map((tag) => (
-              <Button key={tag} href={`/tags/${tag}`}>
-                {tag}
-              </Button>
-            ))}
-          </ButtonsContainer>
-        )}
+        {tags && <Tags tags={tags} />}
         <Span>{date}</Span>
       </PostHeader>
       <FeatureImg featureImage={featureImage} />
       <PostContainer>{children}</PostContainer>
+      <Pagination previous={previous} next={next} />
     </PostWrapper>
   );
 };

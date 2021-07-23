@@ -1,8 +1,7 @@
 import React from "react";
 import { Link } from "gatsby";
 import { CardWrapper, CardInfoWrapper, H2, P, Span } from "../elements";
-import { FeatureImg, Button } from "./index";
-import { ButtonsContainer } from "../elements";
+import { FeatureImg, Tags } from "./index";
 
 export const ContentCard = ({
   slug,
@@ -22,15 +21,7 @@ export const ContentCard = ({
           <H2>{title}</H2>
         </Link>
         <P>{excerpt}</P>
-        {tags && (
-          <ButtonsContainer>
-            {tags.map((tag) => (
-              <Button key={tag} href={`/tags/${tag}`}>
-                {tag}
-              </Button>
-            ))}
-          </ButtonsContainer>
-        )}
+        {tags && <Tags tags={tags} />}
         <Span>{date}</Span>
       </CardInfoWrapper>
     </CardWrapper>

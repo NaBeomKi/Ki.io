@@ -11,9 +11,15 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           }
           next {
             slug
+            frontmatter {
+              title
+            }
           }
           previous {
             slug
+            frontmatter {
+              title
+            }
           }
         }
       }
@@ -35,8 +41,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       component: require.resolve(`${BASE_PATH}/postPage.js`),
       context: {
         id,
-        next,
-        previous,
+        // previous and next are reversed because the sort order is the reverse of the date
+        next: previous,
+        previous: next,
       },
     });
   });

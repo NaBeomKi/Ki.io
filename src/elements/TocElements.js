@@ -22,5 +22,5 @@ export const TocList = tw.li`
 `;
 
 export const Anchor = tw(Link)`
-    block mb-1.5 leading-tight text-opacity-60 transition-opacity duration-300 hover:text-opacity-100 focus:text-opacity-100
+    block mb-1.5 leading-tight opacity-60 transition-opacity duration-300 hover:opacity-100 focus:opacity-100
 `;

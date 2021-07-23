@@ -11,6 +11,8 @@ const postPage = ({ pageContext, data }) => {
       frontmatter: { date, title, tags, featureImage },
     },
   } = data;
+  const { next, previous } = pageContext;
+
   return (
     <App title={title}>
       <Post
@@ -19,6 +21,8 @@ const postPage = ({ pageContext, data }) => {
         tags={tags}
         featureImage={featureImage}
         toc={tableOfContents}
+        previous={previous}
+        next={next}
       >
         <MDXRenderer>{body}</MDXRenderer>
       </Post>
