@@ -2,6 +2,7 @@ import React from "react";
 import { graphql } from "gatsby";
 import { MDXRenderer } from "gatsby-plugin-mdx";
 import { App, Post } from "../components";
+import { ContentWrapper } from "../elements";
 
 const postPage = ({ pageContext, data }) => {
   const {
@@ -15,17 +16,21 @@ const postPage = ({ pageContext, data }) => {
 
   return (
     <App title={title}>
-      <Post
-        title={title}
-        date={date}
-        tags={tags}
-        featureImage={featureImage}
-        toc={tableOfContents}
-        previous={previous}
-        next={next}
-      >
-        <MDXRenderer>{body}</MDXRenderer>
-      </Post>
+      <div>
+        <ContentWrapper>
+          <Post
+            title={title}
+            date={date}
+            tags={tags}
+            featureImage={featureImage}
+            toc={tableOfContents}
+            previous={previous}
+            next={next}
+          >
+            <MDXRenderer>{body}</MDXRenderer>
+          </Post>
+        </ContentWrapper>
+      </div>
     </App>
   );
 };

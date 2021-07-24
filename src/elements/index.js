@@ -4,6 +4,7 @@ export * from "./CodeElements";
 export * from "./CommentElements";
 export * from "./ContentElements";
 export * from "./HeaderElements";
+export * from "./NotFoundElements";
 export * from "./PaginationElements";
 export * from "./PostElements";
 export * from "./TableElements";

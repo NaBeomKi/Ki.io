@@ -1,6 +1,7 @@
 import React from "react";
 import { graphql } from "gatsby";
 import { App, ContentCard, AllTags } from "../components";
+import { ContentWrapper } from "../elements";
 
 const IndexPage = ({ data }) => {
   const {
@@ -9,27 +10,31 @@ const IndexPage = ({ data }) => {
 
   return (
     <App title="Home">
-      <AllTags />
-      {edges.map((edge) => {
-        const {
-          node: {
-            slug,
-            excerpt,
-            frontmatter: { date, tags, title, featureImage },
-          },
-        } = edge;
-        return (
-          <ContentCard
-            key={slug}
-            title={title}
-            date={date}
-            tags={tags}
-            featureImage={featureImage}
-            slug={slug}
-            excerpt={excerpt}
-          />
-        );
-      })}
+      <div>
+        <ContentWrapper>
+          <AllTags />
+          {edges.map((edge) => {
+            const {
+              node: {
+                slug,
+                excerpt,
+                frontmatter: { date, tags, title, featureImage },
+              },
+            } = edge;
+            return (
+              <ContentCard
+                key={slug}
+                title={title}
+                date={date}
+                tags={tags}
+                featureImage={featureImage}
+                slug={slug}
+                excerpt={excerpt}
+              />
+            );
+          })}
+        </ContentWrapper>
+      </div>
     </App>
   );
 };

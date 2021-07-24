@@ -4,6 +4,7 @@ export * from "./Code";
 export * from "./Comments";
 export * from "./ContentCard";
 export * from "./Header";
+export * from "./NotFound";
 export * from "./FaIcon";
 export * from "./FeatureImage";
 export * from "./Pagination";

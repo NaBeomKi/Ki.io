@@ -10,7 +10,7 @@ export const TagsWrapper = styled.div`
 `;
 
 export const AllTagsWrapper = tw.div`
-  flex items-center p-2 bg-gray-400 rounded overflow-x-auto
+  flex items-center p-2 bg-gray-200 rounded overflow-x-auto
 `;
 
 export const AllTagsBtn = tw(Link)`
