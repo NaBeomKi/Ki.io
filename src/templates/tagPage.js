@@ -1,6 +1,6 @@
 import React from "react";
 import { graphql } from "gatsby";
-import { App, ContentCard, AllTags } from "../components";
+import { App, ContentCard, AllTags, User } from "../components";
 import { ContentWrapper } from "../elements";
 
 const IndexPage = ({ pageContext, data }) => {
@@ -16,6 +16,7 @@ const IndexPage = ({ pageContext, data }) => {
     <App title={pageTitle}>
       <div>
         <ContentWrapper>
+          <User />
           <AllTags />
           {edges.map((edge) => {
             const {

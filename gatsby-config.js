@@ -1,10 +1,12 @@
 module.exports = {
   siteMetadata: {
-    siteUrl: "https://beomki69.github.io/",
-    title: "Ki's blog",
-    description: "Ki's Tech blog",
+    siteUrl: `https://www.gatsbyjs.com`,
+    title: "blog title",
+    description: "blog description",
     image: "/indexTumb.png",
-    author: "Ki",
+    author: "yourname",
+    email: "youremail@gmail.com",
+    github: "your.github.io",
     utterancesRepo: "beomki69/blog-comments",
   },
   plugins: [

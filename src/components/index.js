@@ -13,3 +13,4 @@ export * from "./Seo";
 export * from "./Table";
 export * from "./Tags";
 export * from "./Toc";
+export * from "./User";

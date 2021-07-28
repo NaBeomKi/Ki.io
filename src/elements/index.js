@@ -11,3 +11,4 @@ export * from "./TableElements";
 export * from "./TagElements";
 export * from "./TocElements";
 export * from "./TypographyElements";
+export * from "./UserElements";
