@@ -43,6 +43,7 @@ const components = {
       return <pre {...preProps} />;
     }
   },
+  wrapper: ({ children }) => <>{children}</>,
 };
 
 export const wrapRootElement = ({ element }) => (

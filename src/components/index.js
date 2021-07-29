@@ -7,6 +7,7 @@ export * from "./Header";
 export * from "./NotFound";
 export * from "./FaIcon";
 export * from "./FeatureImage";
+export * from "./Footer";
 export * from "./Pagination";
 export * from "./Post";
 export * from "./Seo";

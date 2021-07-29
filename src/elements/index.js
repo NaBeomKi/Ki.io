@@ -3,6 +3,7 @@ export * from "./CardElements";
 export * from "./CodeElements";
 export * from "./CommentElements";
 export * from "./ContentElements";
+export * from "./FooterElements";
 export * from "./HeaderElements";
 export * from "./NotFoundElements";
 export * from "./PaginationElements";
