@@ -12,4 +12,4 @@
 - 🤖 Google Analytics
 - ⚙ Configurable
 
-[Demo](https://thirsty-almeida-b431f8.netlify.app/ "demo site")
+[Demo](https://gatsby-ki-blog-demo.netlify.app/ "demo site")
