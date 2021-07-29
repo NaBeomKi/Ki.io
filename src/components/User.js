@@ -22,9 +22,15 @@ export const User = () => {
       site {
         siteMetadata {
           email
-          description
+          introduction
           author
-          github
+          social {
+            twitter
+            github
+            facebook
+            linkedin
+            instagram
+          }
         }
       }
     }
@@ -35,7 +41,7 @@ export const User = () => {
       childImageSharp: { gatsbyImageData },
     },
     site: {
-      siteMetadata: { email, description, author, github },
+      siteMetadata: { email, introduction, author, social },
     },
   } = data;
 
@@ -47,13 +53,23 @@ export const User = () => {
         </UserImgWrapper>
         <div>
           <Username>{author}</Username>
-          <UserBio>{description}</UserBio>
+          <UserBio>{introduction}</UserBio>
         </div>
       </UserProfile>
       <UserLinks>
-        <A href={github} target="_blank" rel="noopener noreferrer">
-          <FaIcon type="fab" name="github" size="2" />
-        </A>
+        {Object.entries(social).map(
+          ([siteName, siteUrl]) =>
+            siteUrl && (
+              <A
+                key={siteName}
+                href={siteUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaIcon type="fab" name={siteName} size="2" />
+              </A>
+            )
+        )}
         <A href={`mailto:${email}`}>
           <FaIcon name="envelope" size="2" />
         </A>

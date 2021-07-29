@@ -19,7 +19,7 @@ export const Seo = ({
         const metaTitle = title
           ? `${title} | ${data.site.siteMetadata.title}`
           : data.site.siteMetadata.title;
-        const metaKeywords = keywords || ["gatsby blog", "gatsby MDX blog"];
+        const metaKeywords = keywords || data.site.siteMetadata.keywords;
         const metaImage = image || data.site.siteMetadata.image;
         const metaUrl = siteUrl || data.site.siteMetadata.siteUrl;
         const metaAuthor = author || data.site.siteMetadata.author;
@@ -95,6 +95,7 @@ const detailsQuery = graphql`
         author
         image
         siteUrl
+        keywords
       }
     }
   }

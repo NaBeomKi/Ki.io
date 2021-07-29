@@ -1,29 +1,22 @@
+const metaConfig = require("./gatsby-meta-config");
+
 module.exports = {
-  siteMetadata: {
-    siteUrl: `https://www.gatsbyjs.com`,
-    title: "blog title",
-    description: "blog description",
-    image: "/indexTumb.png",
-    author: "yourname",
-    email: "youremail@gmail.com",
-    github: "your.github.io",
-    utterancesRepo: "beomki69/blog-comments",
-  },
+  siteMetadata: metaConfig,
   plugins: [
     "gatsby-plugin-styled-components",
     "gatsby-plugin-image",
-    // {
-    //   resolve: "gatsby-plugin-google-analytics",
-    //   options: {
-    //     trackingId: "",
-    //   },
-    // },
+    {
+      resolve: "gatsby-plugin-google-analytics",
+      options: {
+        trackingId: metaConfig.googleAnalyticsId,
+      },
+    },
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-sitemap",
     {
       resolve: "gatsby-plugin-manifest",
       options: {
-        icon: "src/images/icon.png",
+        icon: metaConfig.icon,
       },
     },
     {

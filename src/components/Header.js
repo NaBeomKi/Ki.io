@@ -17,6 +17,13 @@ export const Header = () => {
       logo: file(relativePath: { eq: "logo.png" }) {
         publicURL
       }
+      site {
+        siteMetadata {
+          social {
+            github
+          }
+        }
+      }
     }
   `);
 
@@ -36,7 +43,7 @@ export const Header = () => {
           <HeaderListsContainer>
             <HeaderList>
               <A
-                href="https://github.com/beomki69"
+                href={data.site.siteMetadata.social.github}
                 target="_blank"
                 rel="noopener noreferrer"
               >

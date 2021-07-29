@@ -17,7 +17,9 @@ export const Post = ({
     query {
       site {
         siteMetadata {
-          utterancesRepo
+          comments {
+            utterancesRepo
+          }
         }
       }
     }
@@ -25,7 +27,9 @@ export const Post = ({
 
   const {
     site: {
-      siteMetadata: { utterancesRepo },
+      siteMetadata: {
+        comments: { utterancesRepo },
+      },
     },
   } = data;
 
