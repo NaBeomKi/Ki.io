@@ -3,8 +3,8 @@ module.exports = {
   description: "blog description",
   author: "yourname",
   introduction: `Hello, Nice to meet you. I made this blog!`,
-  siteUrl: `https://www.gatsbyjs.com`,
-  image: "images/thumbnail.png",
+  siteUrl: `https://gatsby-ki-blog-demo.netlify.app`,
+  image: "/images/thumbnail.png",
   email: "youremail@gmail.com",
   social: {
     twitter: `your.twitter`, // Your Twitter account
