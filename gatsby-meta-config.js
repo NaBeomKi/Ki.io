@@ -8,7 +8,7 @@ module.exports = {
   email: "youremail@gmail.com",
   social: {
     twitter: `your.twitter`, // Your Twitter account
-    github: `your.github.io`, // Your GitHub account
+    github: `https://github.com/beomki69/gatsby-ki-blog`, // Your GitHub account
     facebook: `your.facebook`, // Your Facebook account
     linkedin: `your.linkedin`, // Your LinkedIn account
     instagram: `your.instagram`, // Your Instagram account
