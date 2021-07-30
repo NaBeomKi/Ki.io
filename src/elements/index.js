@@ -5,6 +5,7 @@ export * from "./CommentElements";
 export * from "./ContentElements";
 export * from "./FooterElements";
 export * from "./HeaderElements";
+export * from "./ImageElements";
 export * from "./NotFoundElements";
 export * from "./PaginationElements";
 export * from "./PostElements";
