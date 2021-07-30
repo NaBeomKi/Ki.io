@@ -6,7 +6,7 @@ export const TocWrapper = tw.div`
 `;
 
 export const TocContainer = styled.nav`
-  ${tw`sticky top-28 w-auto py-2.5 px-4 rounded-br-lg border-l-2 border-solid border-blue-400 transition-shadow duration-300 hover:shadow-lg focus:shadow-lg`}
+  ${tw`sticky top-28 w-60 py-2.5 px-4 rounded-br-lg border-l-2 border-solid border-blue-400 transition-shadow duration-300 hover:shadow-lg focus:shadow-lg`}
 
   & > ul {
     padding-left: 0;
