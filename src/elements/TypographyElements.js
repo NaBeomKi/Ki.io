@@ -17,7 +17,7 @@ export const Span = tw.span`
 `;
 
 export const Strong = tw.strong`
-    font-bold
+    font-bold leading-tight
 `;
 
 export const A = tw.a`
