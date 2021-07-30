@@ -4,7 +4,7 @@ module.exports = {
   author: "yourname",
   introduction: `Hello, Nice to meet you. I made this blog!`,
   siteUrl: `https://www.gatsbyjs.com`,
-  image: "/indexTumb.png",
+  image: "images/thumbnail.png",
   email: "youremail@gmail.com",
   social: {
     twitter: `your.twitter`, // Your Twitter account

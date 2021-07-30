@@ -49,7 +49,7 @@ export const User = () => {
     <UserWrapper>
       <UserProfile>
         <UserImgWrapper>
-          <FeatureImg featureImage={gatsbyImageData} />
+          <FeatureImg featureImage={gatsbyImageData} alt="profile image" />
         </UserImgWrapper>
         <div>
           <Username>{author}</Username>

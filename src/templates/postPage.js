@@ -15,7 +15,7 @@ const postPage = ({ pageContext, data }) => {
   const { next, previous } = pageContext;
 
   return (
-    <App title={title}>
+    <App title={title} imgUrl={featureImage?.publicURL}>
       <div>
         <ContentWrapper>
           <Post
@@ -48,6 +48,7 @@ export const pageQuery = graphql`
         title
         tags
         featureImage {
+          publicURL
           childImageSharp {
             gatsbyImageData
           }

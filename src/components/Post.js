@@ -41,7 +41,7 @@ export const Post = ({
         {tags && <Tags tags={tags} />}
         <Span>{date}</Span>
       </PostHeader>
-      {featureImage && <FeatureImg featureImage={featureImage} />}
+      {featureImage && <FeatureImg featureImage={featureImage} alt={title} />}
       <PostContainer>{children}</PostContainer>
       <User />
       <Pagination previous={previous} next={next} />
