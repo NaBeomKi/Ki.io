@@ -70,9 +70,11 @@ export const User = () => {
               </A>
             )
         )}
-        <A href={`mailto:${email}`}>
-          <FaIcon name="envelope" size="2" />
-        </A>
+        {email && (
+          <A href={`mailto:${email}`}>
+            <FaIcon name="envelope" size="2" />
+          </A>
+        )}
       </UserLinks>
     </UserWrapper>
   );
