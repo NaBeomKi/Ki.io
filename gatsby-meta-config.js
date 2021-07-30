@@ -18,5 +18,5 @@ module.exports = {
   comments: {
     utterancesRepo: "beomki69/blog-comments", // Your repository for archive comment
   },
-  googleAnalyticsId: `G-QX0RH1R50D`, // Add your google analytics tranking ID
+  googleAnalyticsId: `G-7K7ZWTW91R`, // Add your google analytics tranking ID
 };
