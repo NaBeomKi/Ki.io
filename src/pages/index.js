@@ -48,7 +48,7 @@ export const pageQuery = graphql`
       edges {
         node {
           slug
-          excerpt(pruneLength: 140)
+          excerpt(pruneLength: 140, truncate: true)
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
             tags
