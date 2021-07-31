@@ -99,5 +99,13 @@ module.exports = {
     },
     `gatsby-plugin-emotion`,
     `gatsby-plugin-fontawesome-css`,
+    {
+      resolve: "gatsby-plugin-robots-txt",
+      options: {
+        host: metaConfig.siteUrl,
+        sitemap: `${metaConfig.siteUrl}/sitemap.xml`,
+        policy: [{ userAgent: "*", allow: "/" }],
+      },
+    },
   ],
 };
