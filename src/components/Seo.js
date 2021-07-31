@@ -71,6 +71,10 @@ export const Seo = ({
                 name: `twitter:image`,
                 content: metaImage,
               },
+              {
+                name: `naver-site-verification`,
+                content: `5b9131abedd4b67053693c331fe9838665c3423d`,
+              },
             ].concat(
               metaKeywords && metaKeywords.length > 0
                 ? {
