@@ -3,7 +3,7 @@ module.exports = {
   description: "Ki's Tech Blog",
   author: "Ki",
   introduction: `I want to become a developer.`,
-  siteUrl: `https://gatsby-ki-blog-demo.netlify.app`,
+  siteUrl: `https://beomki.netlify.app`,
   image: "/images/thumbnail.png",
   email: "beomki69@gmail.com",
   social: {
