@@ -1,8 +1,8 @@
 <p align="center">
-    <img alt="key image" src="src/images/logo.png" width="60" />
+  <img alt="key image" src="src/images/logo.png" width="60" />
 </p>
 <h1 align="center">
-  Ki's blog template
+  Ki's Tech blog
 </h1>
 
 - 🖋 Write your blog posts in MDX
@@ -12,4 +12,6 @@
 - 🤖 Google Analytics
 - ⚙ Configurable
 
-[Demo](https://gatsby-ki-blog-demo.netlify.app/ "demo site")
+<h2 align="center">
+  <a href="https://beomki.netlify.app/">Welcome to blog!</a>
+</h2>
