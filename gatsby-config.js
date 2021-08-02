@@ -6,9 +6,17 @@ module.exports = {
     "gatsby-plugin-styled-components",
     "gatsby-plugin-image",
     {
-      resolve: "gatsby-plugin-google-analytics",
+      resolve: `gatsby-plugin-google-gtag`,
       options: {
-        trackingId: metaConfig.googleAnalyticsId,
+        // You can add multiple tracking ids and a pageview event will be fired for all of them.
+        trackingIds: [
+          metaConfig.googleAnalyticsId, // Google Analytics / GA
+        ],
+        // This object is used for configuration specific to this plugin
+        pluginConfig: {
+          // Puts tracking script in the head instead of the body
+          head: true,
+        },
       },
     },
     "gatsby-plugin-react-helmet",
@@ -91,5 +99,13 @@ module.exports = {
     },
     `gatsby-plugin-emotion`,
     `gatsby-plugin-fontawesome-css`,
+    {
+      resolve: "gatsby-plugin-robots-txt",
+      options: {
+        host: metaConfig.siteUrl,
+        sitemap: `${metaConfig.siteUrl}/sitemap.xml`,
+        policy: [{ userAgent: "*", allow: "/" }],
+      },
+    },
   ],
 };
