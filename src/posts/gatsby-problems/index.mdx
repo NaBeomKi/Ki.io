@@ -1,0 +1,196 @@
+---
+title: 🙀 Gatsby 블로그를 만들면 겪은 문제들
+date: 2021-08-01 17:38:00 +0900
+featureImage: images/problems_thumbnail.jpeg
+tags: [gatsby]
+---
+
+## Gatsby 블로그
+
+처음부터 만들어가는 과정은 공식 문서를 포함해 이미 좋은 자료들이 많고, 무엇보다 시간이 지난만큼 다시 처음부터 하는건 매우 귀찮기 때문에...
+
+간단히 제가 겪은 문제들과 해결 방법 정도만 정리해보겠습니다.
+
+처음부터 만드는 과정에 도움이 필요하신 분들은 [Skillthrive의 강의](https://youtube.com/playlist?list=PLW0RabRDhwwzVNhlOgQQgw6HJzXdM1MnT)를 한 번 보시는 것도 좋을 것 같아요.
+
+## Tailwind
+
+Tailwind를 써본 경험이 없어 꼭 써보고 싶었기 때문에 이번 블로그를 만들며 적용해 보기로 했습니다. [공식 문서](https://www.gatsbyjs.com/docs/how-to/styling/tailwind-css/#option-2-css-in-js)에도
+해당 내용이 언급되어 있습니다.
+
+그 중 저는 Option #2: CSS-in-JS 방법을 이용했는데, 문서의 내용대로 진행했는데도 오류가나며 제대로 빌드가 되지 않는 현상이 있었습니다.
+
+구글링해본 내용으로는 emotion의 버전이 바뀌었기 때문이라는 내용외에는 별다른 내용을 찾지못해 한참을 헤멨는데,
+실제로 `package.json`을 확인해보니 `@emotion/styled` 패키지가 예전 버전으로 설치되어 있더라구요.
+
+해당 패키지를 최신 버전으로 업데이트 하려고하니 Netlify CMS 부분에서 에러가 발생했는데 알고보니 처음 `gatsby new` 명령으로 프로젝트 셋업을 하며 기본 설정들을 하며
+Netlify CMS도 선택을 해서 설치가 되어있었는데, 이 패키지를 삭제하니 `@emotion/styled` 도 최신 버전으로 잘 설치되고 잘 적용되었습니다.
+
+이 후에 Netlify CMS를 다시 설치해보려고 시도해봤는데, 이번엔 Netlify CMS가 설치가 안되더라구요. 두 패키지가 어떤 상관관계가 있어 오류가 나는건지, 원인은 파악하지 못했지만,
+저와 같이 `styled-component`로 Tailwind를 이용하려하신다면 참고하시면 좋을 것 같아요.
+
+## ThemeProvider의 theme를 가져오지 못하는 Tailwind
+
+Tailwind를 적용하기전, styled-component를 사용하고 있었고
+사이트의 전반적인 테마를 위해 반복되는 CSS 코드는 ThemeProvider의 theme로 전달해 자식 컴포넌트에서 props로 전달받아 사용할 수 있습니다.
+
+하지만, Tailwind를 사용하기 위해 twin.macro 패키지의 컴포넌트에서는 ThemeProvider로 전달한 props를 받지 못하는 듯 하더라구요.
+이를 해결하기위해 루트 폴더에 tailwind.config.js 파일을 추가해 ThemeProvider로 전달된 theme와 동일한 코드들을 채워주었습니다.
+
+결국 대부분의 스타일은 Tailwind의 기본 스타일을 적용했고, 그 정도로도 만족했기 때문에 결국 font-family 정도만 사용했는데, 더 나은 방법이 있는지는 잘 모르겠습니다.
+
+## TOC 적용
+
+이전 Jekyll 블로그에서도 TOC를 적용했던 것처럼 이번 Gatsby 블로그로 옮겨오면서도 TOC를 적용했습니다.
+
+TOC는 GraphQL에서 쉽게 가져올 수 있었지만, 제목에 id를 자동으로 적용하기 위해 `gatsby-remark-autolink-headers` 플러그인을 사용했습니다.
+문서에서 설명하는 사용 방법을 살펴보면 `gatsby-transformer-remark`의 하위 플러그인으로 사용해야한다고 합니다.
+
+하지만 저는 md가 아닌, mdx를 사용하려는 계획이었기 때문에 `gatsby-plugin-mdx`의 하위 플러그인으로 사용했고, 예상하시듯이 제대로 적용되지 않았습니다...🤦‍♂️
+
+해결방법은 `gatsby-transformer-remark`과 `gatsby-plugin-mdx` 모두의 하위 플러그인으로 추가해줘야 한다고 하더라구요.
+
+이를 적용한 저의 package.json의 내용은 다음과 같습니다.
+
+```json
+module.exports = {
+  // ...
+  plugins: [
+    {
+      resolve: "gatsby-transformer-remark",
+      options: {
+      plugins: [
+        {
+          resolve: "gatsby-remark-autolink-headers",
+          options: {
+          offsetY: "100",
+          icon: `<svg aria-hidden="true" height="20" version="1.1" viewBox="0 0 16 16" width="20"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg>`,
+          },
+        },
+      ],
+      },
+    },
+    {
+      resolve: "gatsby-plugin-mdx",
+      options: {
+        extensions: [".mdx", ".md"],
+        gatsbyRemarkPlugins: [
+          "gatsby-remark-autolink-headers",
+        ],
+      },
+    },
+  ],
+}
+```
+
+## 포스트에 움짤(gif 파일)도 올리고 싶다.
+
+mdx 파일이 제대로 렌더링되는지 테스트 하던 중, 포스트와 함께 올릴 이미지 파일들이 제대로 나오지 않는다는걸 알았습니다.
+이를 위해 살펴본 [공식문서](https://www.gatsbyjs.com/docs/working-with-images-in-markdown/#using-the-mdx-plugin)에서는 `gatsby-remark-images` 플러그인을 언급하고 있습니다.
+
+해당 플러그인을 적용해보던 중, 기존 블로그에서 사용한적이 있는 gif 이미지는 나오지 않는다는 사실을 알았습니다.
+해당 플러그인의 문서내용을 읽어보면 JPEG와 PNG 파일만 지원하며, GIF 또는 SVG 파일은 지원하지 않으니 이 경우 `gatsby-remark-copy-linked-files`를 이용하라는 내용이 나옵니다.
+
+`gatsby-remark-copy-linked-files`를 적용하면서 다른 형식의 파일이 잘 나오는 것을 확인했고, 이 정도로도 충분했다고 느끼기는 합니다만,
+각각의 포스트와 함께 관리되고 있던 이미지 파일들이 빌드가 된 이후 public 폴더를 확인해보면 서로 다른 포스트에 적용되고 있는 이미지들이 서로 구분없이 묶여있다고 느꼈습니다.
+이 부분을 해결하고 싶어 찾아보던 중 `gatsby-remark-copy-relative-linked-files` 플러그인을 알게되었습니다.
+
+둘의 차이점은 전자의 경우 기본적으로 public 폴더의 하위로 모든 이미지를 가져오지만,
+후자의 경우 모든 md/mdx에 적용된 이미지들의 상대적 위치를 그대로 가져온다는 점 입니다.
+설명이 좀 어려운 듯 하지만 각각의 포스트에 적용된 이미지들끼리 관리할 수 있게 되어 기존에 원하던대로 문제를 해결할 수 있었습니다.
+
+## Code Highlight
+
+Gatsby를 이용해 본 분들의 글을 보면 다양한 플러그인을 장점으로 꼽는 경우를 봤는데, 저 또한 위의 과정들을 거치며 그런 말들이 이해가 가더라구요.
+그래서 자연스럽게 Code Highlight 기능도 가장 먼저 플러그인을 찾아봤습니다.
+
+그 중 가장 다운로드 수가 많은 `gatsby-remark-prismjs`을 이용해 봤는데, 바로 성공했으면 이렇게 글을 쓰고 있지 않았겠죠...
+
+좀 더 찾아보니 MDX의 경우에만 해당되는건지는 잘 모르겠지만, prism-react-renderer를 좀 더 추천한다는 내용을 발견했습니다.
+MDX의 [문서](https://mdxjs.com/guides/syntax-highlighting)에도 prism-react-renderer를 언급하며 Code Block 컴포넌트의 예시를 설명하고 있는데,
+이 예시를 그대로 복붙했는데도 왜인지 제대로 동작하지 않아서 꽤나 애를 먹었어요. 바로 아래의 예시입니다.
+
+```js
+import React from "react";
+import Highlight, { defaultProps } from "prism-react-renderer";
+
+export default ({ children, className }) => {
+  const language = className.replace(/language-/, "");
+
+  return (
+    <Highlight {...defaultProps} code={children} language={language}>
+      {({ className, style, tokens, getLineProps, getTokenProps }) => (
+        <pre className={className} style={{ ...style, padding: "20px" }}>
+          {tokens.map((line, i) => (
+            <div key={i} {...getLineProps({ line, key: i })}>
+              {line.map((token, key) => (
+                <span key={key} {...getTokenProps({ token, key })} />
+              ))}
+            </div>
+          ))}
+        </pre>
+      )}
+    </Highlight>
+  );
+};
+```
+
+예시를 보면 `code={children}`라고 되어있어 코드 내용을 받아온다고 생각했는데 `children`에 정작 아무것도 없어서 오류가 나더라구요...
+
+이 문제가 가장 처음에도 언급했던 [Skillthrive의 강의](https://youtube.com/playlist?list=PLW0RabRDhwwzVNhlOgQQgw6HJzXdM1MnT)의 내용으로 해결했습니다.
+강의를 보고 수정한 저의 코드는 아래와 같아요.
+
+```js
+import React from "react";
+import Highlight, { defaultProps } from "prism-react-renderer";
+import theme from "prism-react-renderer/themes/vsDark";
+import { CodeWrapper, Pre, LineNo } from "../elements";
+
+export const Code = ({ codeString, language }) => {
+  return (
+    <Highlight
+      {...defaultProps}
+      code={codeString}
+      language={language}
+      theme={theme}
+    >
+      {({ className, style, tokens, getLineProps, getTokenProps }) => (
+        <CodeWrapper className="gatsby-highlight" data-language={language}>
+          <Pre className={className} style={style}>
+            {tokens.map((line, i) => (
+              <div key={i} {...getLineProps({ line, key: i })}>
+                <LineNo>{i + 1}</LineNo>
+                {line.map((token, key) => (
+                  <span key={i} {...getTokenProps({ token, key })} />
+                ))}
+              </div>
+            ))}
+          </Pre>
+        </CodeWrapper>
+      )}
+    </Highlight>
+  );
+};
+```
+
+`codeString`으로 코드 내용을 가져오고, `language`도 `className`에서 추출할 필요 없이 직접 받아올 수 있었습니다.
+
+## Google Analytics
+
+처음 Gatsby 설정을 할 때 Google Analytics 항목을 선택했었기 때문에 기본적으로는 `gatsby-plugin-google-analytics` 플러그인이 설치되어있었습니다만,
+저는 `gatsby-plugin-google-gtag`로 변경했습니다. 이 후 테스트를 하는 과정에서 제대로 추적이 되지 않는다는 걸 확인했는데, 원인이 광고 차단 때문이더라구요.
+광고 차단기를 끄니 정상적으로 추적이 되었습니다. 한참 헤멨는데 별 것 아니었던 문제...
+
+## Google Search Console - 아직도 해결을 못한...
+
+구글에 검색 결과로 나올 수 있도록 sitemap을 생성해 제출해야 하는 과정이었는데, sitemap을 생성하기 위해 사용한 `gatsby-plugin-sitemap` 플러그인이 생성하는 sitemap 파일 이름과 위치가 원하는대로 수정이 안되더라구요.
+무엇보다 sitemap을 제대로 만들지 못하고 있었는데, index 페이지만 생성되고 하위 페이지들은 생성이 되지 않아서... 결국 v3.0으로 다운그레이드 하니 원하는대로 동작했습니다.
+
+다만 Google Search Console에 sitemap을 제출해도 일반 HTTP 오류라며 등록이 되지 않고 있습니다. 이 부분은 원인을 모르겠어서 아직도 해결을 못한 상태입니다.
+Naver Search Advisor에 제출했을땐 아무 문제가 없었는데 😢 이 부분은 해결이 되면 후에 포스팅을 하겠습니다.
+
+## 진짜 많다
+
+이 정도로 Gatsby 블로그를 구성하며 겪은 문제들과 해결법을 정리할 수 있을 것 같네요.
+사실 다양한 플러그인들이 잘 구성되어있기 때문에 원하는 기능을 구현하는 것도 그렇고, 플러그인이 제대로 동작하지 않는 경우도 대부분 큰 어려움없이 사용법을 다시 잘 살펴보는 정도로 문제를 해결 할 수 있었습니다.
+마직막 문제는 아직도 해결하지 못했지만, 다른 사이드 프로젝트와 병행하며 해결이 되면 따로 포스트 하겠습니다. 그럼 안뇽👋
