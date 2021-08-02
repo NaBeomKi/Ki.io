@@ -16,7 +16,7 @@ export const PostContainer = styled.section`
   h5,
   h6 {
     scroll-margin-top: 6rem;
-    ${tw`mb-8 text-gray-900 font-bold`}
+    ${tw`my-8 text-gray-900 font-bold`}
     & > a {
       ${tw`flex items-center h-full`}
     }
@@ -47,7 +47,7 @@ export const PostContainer = styled.section`
   }
 
   p {
-    ${tw`mb-4 text-base`}
+    ${tw`mb-4 text-base leading-7`}
   }
 
   img {
@@ -95,7 +95,7 @@ export const PostContainer = styled.section`
   }
 
   code {
-    ${tw`p-1 rounded font-mono text-base leading-8 text-white bg-gray-600`}
+    ${tw`p-1 rounded font-mono text-base leading-7 text-white bg-gray-600`}
   }
 
   hr {

@@ -1,7 +1,7 @@
 import tw, { styled } from "twin.macro";
 
 export const CodeWrapper = tw.div`
-    relative my-4 font-code 
+    relative my-4 font-code leading-tight
 `;
 
 export const Pre = styled.pre`
@@ -11,12 +11,7 @@ export const Pre = styled.pre`
     ${tw`absolute right-2 top-0 py-0.5 px-2 bg-black rounded-b text-right uppercase text-white text-xs tracking-wide`}
   }
 
-  &[class~="language-javascript"]::before {
-    content: "js";
-    background: #f7df1e;
-    color: black;
-  }
-
+  &[class~="language-javascript"]::before,
   &[class~="language-js"]::before {
     content: "js";
     background: #f7df1e;
@@ -41,17 +36,25 @@ export const Pre = styled.pre`
     color: white;
   }
 
+  &[class~="language-shell"]::before {
+    content: "shell";
+    background: #3e474a;
+    color: white;
+  }
+
   &[class~="language-bash"]::before {
     content: "bash";
     background: #3e474a;
     color: white;
   }
-`;
 
-export const Line = tw.div`
-    flex
+  &[class~="language-yml"]::before {
+    content: "yml";
+    background: #3e474a;
+    color: white;
+  }
 `;
 
 export const LineNo = tw.span`
-    pr-4 select-none opacity-50
+  inline-block w-9 pr-4 select-none opacity-50 text-right
 `;
