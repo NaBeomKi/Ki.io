@@ -34,7 +34,7 @@ export const AllTags = () => {
 
   return (
     <AllTagsWrapper>
-      <AllTagsBtn to="/">{`All Posts (${totalCount})`}</AllTagsBtn>
+      <AllTagsBtn to="/">{`All (${totalCount})`}</AllTagsBtn>
       {group &&
         group.map((tag, index) => (
           <AllTagsBtn
