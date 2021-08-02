@@ -1,8 +1,8 @@
 {
-  "name": "gatsby-ki-blog",
+  "name": "ki-blog",
   "version": "1.0.0",
   "private": true,
-  "description": "Ki's gatsby blog template",
+  "description": "Ki's Tech blog",
   "author": "beomki69",
   "keywords": [
     "gatsby"
