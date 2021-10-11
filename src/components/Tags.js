@@ -1,21 +1,24 @@
-import React from "react";
+import React, { memo } from "react";
 import { useStaticQuery, graphql } from "gatsby";
-import { TagsWrapper, AllTagsWrapper, AllTagsBtn } from "../elements";
-import { Button } from "./index";
+import { TagsWrapper, TagsNaviWrapper, TagWrapper } from "../elements";
 
-export const Tags = ({ tags }) => {
+export const Tags = memo(({ tags, selectTag, currentTag }) => {
   return (
     <TagsWrapper>
       {tags.map((tag) => (
-        <Button key={tag} className="tag" href={`/tags/${tag}`}>
+        <TagWrapper
+          key={tag}
+          onClick={selectTag(tag)}
+          active={currentTag === tag}
+        >
           {tag}
-        </Button>
+        </TagWrapper>
       ))}
     </TagsWrapper>
   );
-};
+});
 
-export const AllTags = () => {
+export const AllTags = memo(({ selectTag, currentTag }) => {
   const data = useStaticQuery(graphql`
     query {
       allMdx {
@@ -33,15 +36,19 @@ export const AllTags = () => {
   } = data;
 
   return (
-    <AllTagsWrapper>
-      <AllTagsBtn to="/">{`All (${totalCount})`}</AllTagsBtn>
+    <TagsNaviWrapper>
+      <TagWrapper
+        onClick={selectTag("all")}
+        active={currentTag === "all"}
+      >{`all (${totalCount})`}</TagWrapper>
       {group &&
         group.map((tag, index) => (
-          <AllTagsBtn
+          <TagWrapper
             key={tag + index}
-            to={`/tags/${tag.fieldValue}`}
-          >{`${tag.fieldValue} (${tag.totalCount})`}</AllTagsBtn>
+            onClick={selectTag(tag.fieldValue)}
+            active={currentTag === tag.fieldValue}
+          >{`${tag.fieldValue} (${tag.totalCount})`}</TagWrapper>
         ))}
-    </AllTagsWrapper>
+    </TagsNaviWrapper>
   );
-};
+});

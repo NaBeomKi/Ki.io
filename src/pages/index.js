@@ -2,38 +2,37 @@ import React from "react";
 import { graphql } from "gatsby";
 import { App, ContentCard, AllTags, User } from "../components";
 import { ContentWrapper } from "../elements";
+import useTag from "../hooks/useTag";
 
 const IndexPage = ({ data }) => {
   const {
     allMdx: { edges },
   } = data;
 
+  const [tag, selectTag] = useTag();
+
   return (
     <App title="Home">
       <div>
         <ContentWrapper>
           <User />
-          <AllTags />
-          {edges.map((edge) => {
-            const {
-              node: {
-                slug,
-                excerpt,
-                frontmatter: { date, tags, title, featureImage },
-              },
-            } = edge;
-            return (
-              <ContentCard
-                key={slug}
-                title={title}
-                date={date}
-                tags={tags}
-                featureImage={featureImage}
-                slug={slug}
-                excerpt={excerpt}
-              />
-            );
-          })}
+          <AllTags selectTag={selectTag} currentTag={tag} />
+          {edges
+            .filter(
+              (edge) =>
+                edge.node.frontmatter.tags.includes(tag) || tag === "all"
+            )
+            .map((edge) => {
+              const { node } = edge;
+              return (
+                <ContentCard
+                  key={node.slug}
+                  {...node}
+                  selectTag={selectTag}
+                  currentTag={tag}
+                />
+              );
+            })}
         </ContentWrapper>
       </div>
     </App>

@@ -50,14 +50,4 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       },
     });
   });
-
-  // Create pages for each tag.
-  result.data.allMdx.group.forEach((tag) => {
-    const { fieldValue } = tag;
-    createPage({
-      path: `/tags/${fieldValue}`,
-      component: require.resolve(`${BASE_PATH}/tagPage.js`),
-      context: { tag: fieldValue },
-    });
-  });
 };
