@@ -72,7 +72,7 @@ export const PostContainer = styled.section`
   }
 
   blockquote {
-    ${tw`mb-3 p-3 border-l-4 border-solid border-blue-300 bg-gray-200 text-black`}
+    ${tw`my-2 p-3 border-l-4 border-solid border-blue-300 bg-gray-200 text-black`}
 
     & > p {
       ${tw`last:m-0 text-lg`}
