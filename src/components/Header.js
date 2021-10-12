@@ -1,5 +1,6 @@
 import React from "react";
 import { useStaticQuery, graphql } from "gatsby";
+import { DarkMode } from "./index";
 import {
   HeaderWrapper,
   HeaderContainer,
@@ -49,6 +50,9 @@ export const Header = () => {
               >
                 <FaIcon type="fab" name="github" size="2" />
               </A>
+            </HeaderList>
+            <HeaderList>
+              <DarkMode />
             </HeaderList>
           </HeaderListsContainer>
         </div>

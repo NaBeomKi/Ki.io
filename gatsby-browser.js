@@ -23,11 +23,22 @@ const GlobalStyles = createGlobalStyle`
     box-sizing: border-box;
     word-break: keep-all;
   }
+  :root {
+    --backgroundColor: #f9fafb;
+    --textColor: #111826;
+
+    &.dark{
+      --backgroundColor: #111826;
+      --textColor: #f9fafb;
+    }
+  }
   body {
     font-family: ${(props) =>
       props.theme.fonts
         .main}, --apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
       Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    background: var(--backgroundColor);
+    color: var(--textColor);
   }
 `;
 
