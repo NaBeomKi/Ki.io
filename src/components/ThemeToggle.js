@@ -1,6 +1,7 @@
 import React, { memo } from "react";
 import styled from "styled-components";
-import useDarkMode from "../hooks/useDarkMode";
+import { DARK } from "../constants";
+import { useTheme, useChangeTheme } from "../contexts/ThemeContext";
 import { FaIcon } from "./index";
 
 const CheckBox = styled.input`
@@ -9,7 +10,7 @@ const CheckBox = styled.input`
 
 const ToggleWrapper = styled.label`
   display: flex;
-  justify-content: ${(props) => (props.isDarkMode ? "flex-start" : "flex-end")};
+  justify-content: ${(props) => (props.isDark ? "flex-start" : "flex-end")};
   align-items: center;
   position: relative;
   width: 5.5rem;
@@ -43,11 +44,12 @@ const ToggleText = styled.span`
   color: #2c2c54;
 `;
 
-export const DarkMode = memo(() => {
-  const [isDarkMode, changeDarkMode] = useDarkMode();
+export const ThemeToggle = memo(() => {
+  const theme = useTheme();
+  const changeTheme = useChangeTheme();
 
   const onDarkModeClick = (e) => {
-    changeDarkMode(e.target.checked);
+    changeTheme(e.target.checked);
   };
 
   return (
@@ -55,14 +57,14 @@ export const DarkMode = memo(() => {
       <CheckBox
         type="checkbox"
         id="dark-mode"
-        checked={isDarkMode}
+        checked={theme === DARK}
         onChange={onDarkModeClick}
       />
-      <ToggleWrapper htmlFor="dark-mode" isDarkMode={isDarkMode}>
-        <Icon className={isDarkMode && "active"}>
-          <FaIcon name={isDarkMode ? "moon" : "sun"} size="1" />
+      <ToggleWrapper htmlFor="dark-mode" isDark={theme === DARK}>
+        <Icon className={theme === DARK && "active"}>
+          <FaIcon name={theme === DARK ? "moon" : "sun"} size="1" />
         </Icon>
-        <ToggleText>{isDarkMode ? "Dark" : "Light"}</ToggleText>
+        <ToggleText>{theme === DARK ? "Dark" : "Light"}</ToggleText>
       </ToggleWrapper>
     </div>
   );

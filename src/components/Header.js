@@ -1,6 +1,6 @@
 import React from "react";
 import { useStaticQuery, graphql } from "gatsby";
-import { DarkMode } from "./index";
+import { ThemeToggle } from "./index";
 import {
   HeaderWrapper,
   HeaderContainer,
@@ -52,7 +52,7 @@ export const Header = () => {
               </A>
             </HeaderList>
             <HeaderList>
-              <DarkMode />
+              <ThemeToggle />
             </HeaderList>
           </HeaderListsContainer>
         </div>
