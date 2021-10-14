@@ -1,15 +1,8 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { COLOR_SCHEME, THEME, DARK, LIGHT } from "../constants";
 
-const getInitTheme = () => {
-  const osTheme = window.matchMedia(COLOR_SCHEME).matches ? DARK : LIGHT;
-  const localStorageTheme = JSON.parse(localStorage.getItem(THEME)) || null;
-  return localStorageTheme || osTheme;
-};
-
 const useThemeToggle = () => {
-  const initTheme = useMemo(() => getInitTheme(), []);
-  const [theme, setTheme] = useState(initTheme);
+  const [theme, setTheme] = useState("");
 
   const changeTheme = useCallback((isDark) => {
     const currentTheme = isDark ? DARK : LIGHT;
@@ -25,6 +18,10 @@ const useThemeToggle = () => {
   );
 
   useEffect(() => {
+    const osTheme = window.matchMedia(COLOR_SCHEME).matches ? DARK : LIGHT;
+    const localStorageTheme = JSON.parse(localStorage.getItem(THEME)) || null;
+    setTheme(localStorageTheme || osTheme);
+
     window
       .matchMedia(COLOR_SCHEME)
       .addEventListener("change", handleMatchMedia);

@@ -19,6 +19,7 @@ const ToggleWrapper = styled.label`
   background: #bceeff;
   border-radius: 9999px;
   border: 2px solid #2c2c54;
+  cursor: pointer;
 `;
 
 const Icon = styled.span`

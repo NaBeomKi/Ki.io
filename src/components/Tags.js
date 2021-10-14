@@ -1,6 +1,7 @@
 import React, { memo } from "react";
 import { useStaticQuery, graphql } from "gatsby";
 import { TagsWrapper, TagsNaviWrapper, TagWrapper } from "../elements";
+import { ALL } from "../constants";
 
 export const Tags = memo(({ tags, selectTag, currentTag }) => {
   return (
@@ -18,7 +19,7 @@ export const Tags = memo(({ tags, selectTag, currentTag }) => {
   );
 });
 
-export const AllTags = memo(({ selectTag, currentTag }) => {
+export const TagsNavi = memo(({ selectTag, currentTag }) => {
   const data = useStaticQuery(graphql`
     query {
       allMdx {
@@ -38,9 +39,9 @@ export const AllTags = memo(({ selectTag, currentTag }) => {
   return (
     <TagsNaviWrapper>
       <TagWrapper
-        onClick={selectTag("all")}
-        active={currentTag === "all"}
-      >{`all (${totalCount})`}</TagWrapper>
+        onClick={selectTag(ALL)}
+        active={currentTag === ALL}
+      >{`${ALL} (${totalCount})`}</TagWrapper>
       {group &&
         group.map((tag, index) => (
           <TagWrapper

@@ -1,6 +1,6 @@
 import React from "react";
 import { graphql } from "gatsby";
-import { App, ContentCard, AllTags, User } from "../components";
+import { App, ContentCard, TagsNavi, User } from "../components";
 import { ContentWrapper } from "../elements";
 import useTag from "../hooks/useTag";
 
@@ -16,7 +16,7 @@ const IndexPage = ({ data }) => {
       <div>
         <ContentWrapper>
           <User />
-          <AllTags selectTag={selectTag} currentTag={tag} />
+          <TagsNavi selectTag={selectTag} currentTag={tag} />
           {edges
             .filter(
               (edge) =>

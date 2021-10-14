@@ -9,6 +9,7 @@ export const Comments = memo(({ repo }) => {
   const theme = useTheme();
 
   const createComment = useCallback(() => {
+    if (!theme) return;
     const comment = document.createElement("script");
 
     const attributes = {
