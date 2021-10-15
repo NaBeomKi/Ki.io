@@ -1,5 +1,5 @@
 import React from "react";
-import { ThemeProvider, createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from "styled-components";
 import { MDXProvider } from "@mdx-js/react";
 import { preToCodeBlock } from "mdx-utils";
 import reset from "styled-reset";
@@ -10,6 +10,7 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
 import "tailwindcss/dist/base.min.css";
 import { Code, Table } from "./src/components";
+import ThemeProvider from "./src/contexts/ThemeContext";
 
 library.add(fab, fas, far);
 
@@ -33,9 +34,7 @@ const GlobalStyles = createGlobalStyle`
     }
   }
   body {
-    font-family: ${(props) =>
-      props.theme.fonts
-        .main}, --apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    font-family: --apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
       Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     background: var(--backgroundColor);
     color: var(--textColor);
@@ -59,7 +58,7 @@ const components = {
 
 export const wrapRootElement = ({ element }) => (
   <MDXProvider components={components}>
-    <ThemeProvider theme={Theme}>
+    <ThemeProvider>
       <GlobalStyles />
       {element}
     </ThemeProvider>
