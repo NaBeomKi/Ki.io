@@ -97,7 +97,7 @@ export const PostContainer = styled.section`
   }
 
   code {
-    ${tw`py-0.5 px-1 rounded font-mono text-sm text-white bg-gray-600`}
+    ${tw`py-0.5 px-1 rounded font-code text-sm text-white bg-gray-600`}
   }
 
   hr {

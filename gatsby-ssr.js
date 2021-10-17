@@ -3,7 +3,6 @@ import { createGlobalStyle } from "styled-components";
 import { MDXProvider } from "@mdx-js/react";
 import { preToCodeBlock } from "mdx-utils";
 import reset from "styled-reset";
-import Theme from "./src/themes/theme";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { fas } from "@fortawesome/free-solid-svg-icons";

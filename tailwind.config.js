@@ -4,7 +4,6 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        main: ["Noto Sans KR", "sans-serif"],
         code: ["Fira Code", "Monaco", "Ubuntu Mono", "monospace"],
       },
       colors: {
