@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import {
   TocWrapper,
   TocContainer,
@@ -8,33 +8,41 @@ import {
 } from "../elements";
 
 export const Toc = ({ toc }) => {
-  const getListContainer = (list) => {
-    if (list.items) {
-      return (
-        <TocListContainer>
-          {list.items.map((item) => {
-            return (
-              <TocList key={item.url}>
-                <Anchor
-                  to={item.url}
-                  key={item.url}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document.querySelector(item.url).scrollIntoView({
-                      behavior: "smooth",
-                    });
-                  }}
-                >
-                  {item.title}
-                </Anchor>
-                {getListContainer(item)}
-              </TocList>
-            );
-          })}
-        </TocListContainer>
-      );
-    }
-  };
+  const onAnchorClick = useCallback(
+    (url) => (e) => {
+      e.preventDefault();
+      document.querySelector(url).scrollIntoView({
+        behavior: "smooth",
+      });
+    },
+    []
+  );
+
+  const getListContainer = useCallback(
+    (list) => {
+      if (list.items) {
+        return (
+          <TocListContainer>
+            {list.items.map((item) => {
+              return (
+                <TocList key={item.url}>
+                  <Anchor
+                    to={item.url}
+                    key={item.url}
+                    onClick={onAnchorClick(item.url)}
+                  >
+                    {item.title}
+                  </Anchor>
+                  {getListContainer(item)}
+                </TocList>
+              );
+            })}
+          </TocListContainer>
+        );
+      }
+    },
+    [onAnchorClick]
+  );
 
   return (
     <TocWrapper>
