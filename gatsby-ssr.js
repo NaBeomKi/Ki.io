@@ -10,6 +10,7 @@ import { far } from "@fortawesome/free-regular-svg-icons";
 import "tailwindcss/dist/base.min.css";
 import { Code, Table } from "./src/components";
 import ThemeProvider from "./src/contexts/ThemeContext";
+import TagProvider from "./src/contexts/TagContext";
 
 library.add(fab, fas, far);
 
@@ -58,8 +59,10 @@ const components = {
 export const wrapRootElement = ({ element }) => (
   <MDXProvider components={components}>
     <ThemeProvider>
-      <GlobalStyles />
-      {element}
+      <TagProvider>
+        <GlobalStyles />
+        {element}
+      </TagProvider>
     </ThemeProvider>
   </MDXProvider>
 );

@@ -1,21 +1,19 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { ALL } from "../constants";
 
 const useTag = () => {
-  const [tag, setTag] = useState("all");
+  const [tag, setTag] = useState(ALL);
 
-  const selectTag = useCallback(
-    (tagName) => () => {
-      setTag(tagName);
-      window.history.pushState({}, ``, `/?tag=${tagName}`);
-    },
-    []
-  );
-
-  const changeTag = useCallback(() => {
-    const tagName =
-      new URLSearchParams(window.location.search).get("tag") || "all";
+  const selectTag = (tagName) => () => {
     setTag(tagName);
-  }, []);
+    window.history.pushState({}, ``, `/?tag=${tagName}`);
+  };
+
+  const changeTag = () => {
+    const tagName =
+      new URLSearchParams(window.location.search).get("tag") || ALL;
+    setTag(tagName);
+  };
 
   useEffect(() => {
     window.addEventListener("popstate", changeTag);

@@ -2,21 +2,21 @@ import React from "react";
 import { graphql } from "gatsby";
 import { App, ContentCard, TagsNavi, User } from "../components";
 import { ContentWrapper } from "../elements";
-import useTag from "../hooks/useTag";
+import { useCurrentTag } from "../contexts/TagContext";
 
 const IndexPage = ({ data }) => {
   const {
     allMdx: { edges },
   } = data;
 
-  const [tag, selectTag] = useTag();
+  const tag = useCurrentTag();
 
   return (
     <App title="Home">
       <div>
         <ContentWrapper>
           <User />
-          <TagsNavi selectTag={selectTag} currentTag={tag} />
+          <TagsNavi />
           {edges
             .filter(
               (edge) =>
@@ -24,14 +24,7 @@ const IndexPage = ({ data }) => {
             )
             .map((edge) => {
               const { node } = edge;
-              return (
-                <ContentCard
-                  key={node.slug}
-                  {...node}
-                  selectTag={selectTag}
-                  currentTag={tag}
-                />
-              );
+              return <ContentCard key={node.slug} {...node} />;
             })}
         </ContentWrapper>
       </div>

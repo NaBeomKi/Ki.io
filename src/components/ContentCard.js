@@ -8,8 +8,6 @@ export const ContentCard = memo((props) => {
     slug,
     excerpt,
     frontmatter: { date, tags, title, featureImage },
-    selectTag,
-    currentTag,
   } = props;
   return (
     <CardWrapper>
@@ -23,9 +21,7 @@ export const ContentCard = memo((props) => {
           <H2>{title}</H2>
         </Link>
         <P>{excerpt}</P>
-        {tags && (
-          <Tags tags={tags} selectTag={selectTag} currentTag={currentTag} />
-        )}
+        {tags && <Tags tags={tags} />}
         <Span>{date}</Span>
       </CardInfoWrapper>
     </CardWrapper>
