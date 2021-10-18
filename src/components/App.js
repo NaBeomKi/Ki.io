@@ -1,5 +1,5 @@
 import React from "react";
-import { useTheme } from "../contexts/ThemeContext";
+import { useTheme } from "../store/StoreContext";
 import { Seo, Header, Footer } from "./index";
 
 export const App = ({ children, title, imgUrl, excerpt }) => {

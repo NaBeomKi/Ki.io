@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useCallback, memo } from "react";
-import { useTheme } from "../contexts/ThemeContext";
+import { useTheme } from "../store/StoreContext";
 import { CommentsWrapper } from "../elements";
 
 const src = "https://utteranc.es/client.js";

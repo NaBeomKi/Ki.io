@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import styled from "styled-components";
-import { DARK } from "../constants";
-import { useTheme, useChangeTheme } from "../contexts/ThemeContext";
+import { ACTIVE, DARK, LIGHT, SET_THEME } from "../constants";
+import { useTheme, useDispatch } from "../store/StoreContext";
 import { FaIcon } from "./index";
 
 const CheckBox = styled.input`
@@ -43,14 +43,15 @@ const Icon = styled.span`
 const ToggleText = styled.span`
   font-size: 0.825rem;
   color: #2c2c54;
+  text-transform: capitalize;
 `;
 
 export const ThemeToggle = memo(() => {
   const theme = useTheme();
-  const changeTheme = useChangeTheme();
+  const dispatch = useDispatch();
 
   const onDarkModeClick = (e) => {
-    changeTheme(e.target.checked);
+    dispatch({ type: SET_THEME, theme: e.target.checked ? DARK : LIGHT });
   };
 
   return (
@@ -62,10 +63,10 @@ export const ThemeToggle = memo(() => {
         onChange={onDarkModeClick}
       />
       <ToggleWrapper htmlFor="dark-mode" isDark={theme === DARK}>
-        <Icon className={theme === DARK && "active"}>
+        <Icon className={theme === DARK && ACTIVE}>
           <FaIcon name={theme === DARK ? "moon" : "sun"} size="1" />
         </Icon>
-        <ToggleText>{theme === DARK ? "Dark" : "Light"}</ToggleText>
+        <ToggleText>{theme === DARK ? DARK : LIGHT}</ToggleText>
       </ToggleWrapper>
     </div>
   );

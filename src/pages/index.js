@@ -1,15 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { graphql } from "gatsby";
 import { App, ContentCard, TagsNavi, User } from "../components";
 import { ContentWrapper } from "../elements";
-import { useCurrentTag } from "../contexts/TagContext";
+import { useDispatch, useTag } from "../store/StoreContext";
+import { ALL, SET_TAG, TAG } from "../constants";
 
-const IndexPage = ({ data }) => {
+const IndexPage = ({ location, data }) => {
   const {
     allMdx: { edges },
   } = data;
 
-  const tag = useCurrentTag();
+  const tag = useTag();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const tagName = new URLSearchParams(location.search).get(TAG);
+    dispatch({ type: SET_TAG, tag: tagName || ALL });
+  }, []);
 
   return (
     <App title="Home">
@@ -19,8 +26,7 @@ const IndexPage = ({ data }) => {
           <TagsNavi />
           {edges
             .filter(
-              (edge) =>
-                edge.node.frontmatter.tags.includes(tag) || tag === "all"
+              (edge) => edge.node.frontmatter.tags.includes(tag) || tag === ALL
             )
             .map((edge) => {
               const { node } = edge;

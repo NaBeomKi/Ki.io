@@ -9,8 +9,7 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
 import "tailwindcss/dist/base.min.css";
 import { Code, Table } from "./src/components";
-import ThemeProvider from "./src/contexts/ThemeContext";
-import TagProvider from "./src/contexts/TagContext";
+import StoreProvider from "./src/store/StoreContext";
 
 library.add(fab, fas, far);
 
@@ -58,11 +57,9 @@ const components = {
 
 export const wrapRootElement = ({ element }) => (
   <MDXProvider components={components}>
-    <ThemeProvider>
-      <TagProvider>
-        <GlobalStyles />
-        {element}
-      </TagProvider>
-    </ThemeProvider>
+    <StoreProvider>
+      <GlobalStyles />
+      {element}
+    </StoreProvider>
   </MDXProvider>
 );

@@ -1,19 +1,26 @@
-import React, { memo } from "react";
+import React, { memo, useCallback } from "react";
 import { useStaticQuery, graphql } from "gatsby";
 import { TagsWrapper, TagsNaviWrapper, TagWrapper } from "../elements";
-import { ALL } from "../constants";
-import { useCurrentTag, useSelectTag } from "../contexts/TagContext";
+import { ALL, SELECT_TAG } from "../constants";
+import { useTag, useDispatch } from "../store/StoreContext";
 
 export const Tags = memo(({ tags }) => {
-  const currentTag = useCurrentTag();
-  const selectTag = useSelectTag();
+  const currentTag = useTag();
+  const dispatch = useDispatch();
+
+  const onTagClick = useCallback(
+    (tagName) => (e) => {
+      dispatch({ type: SELECT_TAG, tag: tagName });
+    },
+    []
+  );
 
   return (
     <TagsWrapper>
       {tags.map((tag) => (
         <TagWrapper
           key={tag}
-          onClick={selectTag(tag)}
+          onClick={onTagClick(tag)}
           active={currentTag === tag}
         >
           {tag}
@@ -40,20 +47,27 @@ export const TagsNavi = memo(() => {
     allMdx: { group, totalCount },
   } = data;
 
-  const currentTag = useCurrentTag();
-  const selectTag = useSelectTag();
+  const currentTag = useTag();
+  const dispatch = useDispatch();
+
+  const onTagClick = useCallback(
+    (tagName) => (e) => {
+      dispatch({ type: SELECT_TAG, tag: tagName });
+    },
+    []
+  );
 
   return (
     <TagsNaviWrapper>
       <TagWrapper
-        onClick={selectTag(ALL)}
+        onClick={onTagClick(ALL)}
         active={currentTag === ALL}
       >{`${ALL} (${totalCount})`}</TagWrapper>
       {group &&
         group.map((tag, index) => (
           <TagWrapper
             key={tag + index}
-            onClick={selectTag(tag.fieldValue)}
+            onClick={onTagClick(tag.fieldValue)}
             active={currentTag === tag.fieldValue}
           >{`${tag.fieldValue} (${tag.totalCount})`}</TagWrapper>
         ))}
