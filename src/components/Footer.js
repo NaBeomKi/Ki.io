@@ -1,7 +1,7 @@
-import React from "react";
+import React, { memo } from "react";
 import { FooterWrapper, Span, Strong } from "../elements";
 
-export const Footer = () => {
+export const Footer = memo(() => {
   return (
     <FooterWrapper>
       <Span>
@@ -20,4 +20,4 @@ export const Footer = () => {
       </Span>
     </FooterWrapper>
   );
-};
+});

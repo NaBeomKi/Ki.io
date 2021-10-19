@@ -9,6 +9,7 @@ export const ContentCard = memo((props) => {
     excerpt,
     frontmatter: { date, tags, title, featureImage },
   } = props;
+
   return (
     <CardWrapper>
       {featureImage && (
