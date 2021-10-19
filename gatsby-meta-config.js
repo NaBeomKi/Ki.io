@@ -16,7 +16,7 @@ module.exports = {
   icon: `src/images/logo.png`, // Add your favicon
   keywords: ["gatsby blog", "gatsby MDX blog"],
   comments: {
-    utterancesRepo: "beomki69/gatsby-ki-blog", // Your repository for archive comment
+    utterancesRepo: "beomki69/gatsby-starter-ki", // Your repository for archive comment
   },
   googleAnalyticsId: `0`, // Add your google analytics tranking ID
 };
