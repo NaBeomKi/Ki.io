@@ -98,7 +98,7 @@ module.exports = {
       resolve: "gatsby-plugin-robots-txt",
       options: {
         host: metaConfig.siteUrl,
-        sitemap: `${metaConfig.siteUrl}/sitemap.xml`,
+        sitemap: `${metaConfig.siteUrl}/sitemap/sitemap-index.xml`,
         policy: [{ userAgent: "*", allow: "/" }],
       },
     },
