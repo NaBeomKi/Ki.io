@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { useStaticQuery, graphql } from "gatsby";
 import {
   UserWrapper,
@@ -11,7 +11,7 @@ import {
 } from "../elements";
 import { FeatureImg, FaIcon } from "./index";
 
-export const User = () => {
+export const User = memo(() => {
   const data = useStaticQuery(graphql`
     query {
       file(relativePath: { eq: "profile.jpeg" }) {
@@ -78,4 +78,4 @@ export const User = () => {
       </UserLinks>
     </UserWrapper>
   );
-};
+});

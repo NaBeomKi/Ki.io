@@ -16,7 +16,7 @@ const IndexPage = ({ location, data }) => {
   useEffect(() => {
     const tagName = new URLSearchParams(location.search).get(TAG);
     dispatch({ type: SET_TAG, tag: tagName || ALL });
-  }, []);
+  }, [dispatch, location.search]);
 
   return (
     <App title="Home">

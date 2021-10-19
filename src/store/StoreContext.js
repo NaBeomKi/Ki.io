@@ -14,7 +14,7 @@ import {
   SET_TAG,
   THEME,
 } from "../constants";
-import { initState, reducer } from "./reducer";
+import reducer, { initState } from "./reducer";
 
 const StoreContext = createContext();
 
@@ -23,7 +23,7 @@ const StoreProvider = ({ children }) => {
 
   // tag
   const changeTag = useCallback((e) => {
-    dispatch({ type: SET_TAG, tag: e.state.tag || ALL });
+    dispatch({ type: SET_TAG, tag: e.state?.tag || ALL });
   }, []);
 
   useEffect(() => {

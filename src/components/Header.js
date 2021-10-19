@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { useStaticQuery, graphql } from "gatsby";
 import { ThemeToggle } from "./index";
 import {
@@ -12,7 +12,7 @@ import {
 } from "../elements";
 import { FaIcon } from "./FaIcon";
 
-export const Header = () => {
+export const Header = memo(() => {
   const data = useStaticQuery(graphql`
     query {
       logo: file(relativePath: { eq: "logo.png" }) {
@@ -59,4 +59,4 @@ export const Header = () => {
       </HeaderContainer>
     </HeaderWrapper>
   );
-};
+});

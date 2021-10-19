@@ -1,9 +1,9 @@
-import React from "react";
+import React, { memo } from "react";
 import Highlight, { defaultProps } from "prism-react-renderer";
 import theme from "prism-react-renderer/themes/vsDark";
 import { CodeWrapper, Pre, LineNo } from "../elements";
 
-export const Code = ({ codeString, language }) => {
+export const Code = memo(({ codeString, language }) => {
   return (
     <Highlight
       {...defaultProps}
@@ -27,4 +27,4 @@ export const Code = ({ codeString, language }) => {
       )}
     </Highlight>
   );
-};
+});

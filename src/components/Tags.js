@@ -12,7 +12,7 @@ export const Tags = memo(({ tags }) => {
     (tagName) => (e) => {
       dispatch({ type: SELECT_TAG, tag: tagName });
     },
-    []
+    [dispatch]
   );
 
   return (
@@ -54,7 +54,7 @@ export const TagsNavi = memo(() => {
     (tagName) => (e) => {
       dispatch({ type: SELECT_TAG, tag: tagName });
     },
-    []
+    [dispatch]
   );
 
   return (

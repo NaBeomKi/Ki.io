@@ -13,7 +13,7 @@ export const initState = {
   theme: "",
 };
 
-export const reducer = (state, action) => {
+const reducer = (state, action) => {
   switch (action.type) {
     case SET_THEME:
       localStorage.setItem(THEME, JSON.stringify(action.theme));
@@ -29,5 +29,9 @@ export const reducer = (state, action) => {
       return { ...state, tag: action.tag };
     case SET_TAG:
       return { ...state, tag: action.tag };
+    default:
+      return { ...state };
   }
 };
+
+export default reducer;

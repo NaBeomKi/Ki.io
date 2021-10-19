@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { memo, useCallback } from "react";
 import {
   TocWrapper,
   TocContainer,
@@ -7,7 +7,7 @@ import {
   Anchor,
 } from "../elements";
 
-export const Toc = ({ toc }) => {
+export const Toc = memo(({ toc }) => {
   const onAnchorClick = useCallback(
     (url) => (e) => {
       e.preventDefault();
@@ -49,4 +49,4 @@ export const Toc = ({ toc }) => {
       <TocContainer>{getListContainer(toc)}</TocContainer>
     </TocWrapper>
   );
-};
+});

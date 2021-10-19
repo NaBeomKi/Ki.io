@@ -3,12 +3,12 @@ module.exports = {
   description: "blog description",
   author: "yourname",
   introduction: `Hello, Nice to meet you. I made this blog!`,
-  siteUrl: `https://gatsby-ki-blog-demo.netlify.app`,
+  siteUrl: `https://gatsby-starter-ki-demo.netlify.app`,
   image: "/images/thumbnail.png",
   email: "youremail@gmail.com",
   social: {
     twitter: `your.twitter`, // Your Twitter account
-    github: `https://github.com/beomki69/gatsby-ki-blog`, // Your GitHub account
+    github: `https://github.com/beomki69/gatsby-starter-ki`, // Your GitHub account
     facebook: `your.facebook`, // Your Facebook account
     linkedin: `your.linkedin`, // Your LinkedIn account
     instagram: `your.instagram`, // Your Instagram account
