@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useCallback } from "react";
 import { useStaticQuery, graphql } from "gatsby";
 import { ThemeToggle } from "./index";
 import {
@@ -31,9 +31,9 @@ export const Header = memo(() => {
   `);
   const dispatch = useDispatch();
 
-  const onClickHome = () => {
+  const onClickHome = useCallback(() => {
     dispatch({ type: SET_TAG, tag: ALL });
-  };
+  }, [dispatch]);
 
   return (
     <HeaderWrapper>
