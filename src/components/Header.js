@@ -1,5 +1,6 @@
-import React from "react";
+import React, { memo, useCallback } from "react";
 import { useStaticQuery, graphql } from "gatsby";
+import { ThemeToggle } from "./index";
 import {
   HeaderWrapper,
   HeaderContainer,
@@ -10,8 +11,10 @@ import {
   A,
 } from "../elements";
 import { FaIcon } from "./FaIcon";
+import { useDispatch } from "../store/StoreContext";
+import { ALL, SET_TAG } from "../constants";
 
-export const Header = () => {
+export const Header = memo(() => {
   const data = useStaticQuery(graphql`
     query {
       logo: file(relativePath: { eq: "logo.png" }) {
@@ -26,6 +29,11 @@ export const Header = () => {
       }
     }
   `);
+  const dispatch = useDispatch();
+
+  const onClickHome = useCallback(() => {
+    dispatch({ type: SET_TAG, tag: ALL });
+  }, [dispatch]);
 
   return (
     <HeaderWrapper>
@@ -33,7 +41,7 @@ export const Header = () => {
         <nav>
           <HeaderListsContainer>
             <HeaderList>
-              <NavLink to="/">
+              <NavLink to="/" onClick={onClickHome}>
                 <LogoImg src={data.logo.publicURL} alt="Home" />
               </NavLink>
             </HeaderList>
@@ -50,9 +58,12 @@ export const Header = () => {
                 <FaIcon type="fab" name="github" size="2" />
               </A>
             </HeaderList>
+            <HeaderList>
+              <ThemeToggle />
+            </HeaderList>
           </HeaderListsContainer>
         </div>
       </HeaderContainer>
     </HeaderWrapper>
   );
-};
+});

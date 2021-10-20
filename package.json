@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "private": true,
   "description": "Ki's Tech blog",
-  "author": "beomki69",
+  "author": "beomki",
   "keywords": [
     "gatsby"
   ],
+  "license": "MIT",
   "scripts": {
     "develop": "gatsby develop",
     "start": "gatsby develop",
@@ -32,7 +33,7 @@
     "gatsby-plugin-react-helmet": "^4.9.0",
     "gatsby-plugin-robots-txt": "^1.6.8",
     "gatsby-plugin-sharp": "^3.9.0",
-    "gatsby-plugin-sitemap": "^3.0.10",
+    "gatsby-plugin-sitemap": "^4.10.0",
     "gatsby-plugin-styled-components": "^4.9.0",
     "gatsby-plugin-web-font-loader": "^1.0.4",
     "gatsby-remark-autolink-headers": "^4.7.0",

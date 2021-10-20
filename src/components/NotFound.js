@@ -1,7 +1,7 @@
-import React from "react";
+import React, { memo } from "react";
 import { NotFoundWrapper, NotFoundTitle, NotFoundText } from "../elements";
 
-export const NotFound = () => {
+export const NotFound = memo(() => {
   return (
     <NotFoundWrapper>
       <div>
@@ -10,4 +10,4 @@ export const NotFound = () => {
       </div>
     </NotFoundWrapper>
   );
-};
+});

@@ -4,12 +4,12 @@ import { MDXRenderer } from "gatsby-plugin-mdx";
 import { App, Post } from "../components";
 import { ContentWrapper } from "../elements";
 
-const postPage = ({ pageContext, data }) => {
+const PostPage = ({ pageContext, data }) => {
   const {
     mdx: {
       body,
       tableOfContents,
-      frontmatter: { date, title, tags, featureImage },
+      frontmatter: { date, title, featureImage },
     },
   } = data;
   const { next, previous } = pageContext;
@@ -21,7 +21,6 @@ const postPage = ({ pageContext, data }) => {
           <Post
             title={title}
             date={date}
-            tags={tags}
             featureImage={featureImage}
             toc={tableOfContents}
             previous={previous}
@@ -35,7 +34,7 @@ const postPage = ({ pageContext, data }) => {
   );
 };
 
-export default postPage;
+export default PostPage;
 
 export const pageQuery = graphql`
   query postPageQuery($id: String!) {
@@ -45,7 +44,6 @@ export const pageQuery = graphql`
       frontmatter {
         date(formatString: "YYYY.MM.DD")
         title
-        tags
         featureImage {
           publicURL
           childImageSharp {

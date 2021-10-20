@@ -1,13 +1,15 @@
 import tw, { styled } from "twin.macro";
 
-export const PostWrapper = tw.div`relative`;
+export const PostWrapper = tw.div`
+  relative
+`;
 
 export const PostHeader = tw.section`
     mb-6
 `;
 
 export const PostContainer = styled.section`
-  ${tw`mt-10`}
+  ${tw`mt-10 text-base`}
 
   h1,
   h2,
@@ -16,9 +18,12 @@ export const PostContainer = styled.section`
   h5,
   h6 {
     scroll-margin-top: 6rem;
-    ${tw`my-8 text-gray-900 font-bold`}
+    ${tw`my-8 font-bold`}
     & > a {
-      ${tw`flex items-center h-full`}
+      ${tw`flex items-center h-full text-current`}
+      & > svg {
+        ${tw`fill-current`}
+      }
     }
   }
 
@@ -42,16 +47,12 @@ export const PostContainer = styled.section`
     ${tw`text-lg`}
   }
 
-  h6 {
-    ${tw`text-base`}
-  }
-
   p {
-    ${tw`mb-4 text-base leading-7`}
+    ${tw`mb-4 align-middle`}
   }
 
   img {
-    ${tw`max-w-full mt-4`}
+    ${tw`block max-w-full my-4 mx-auto `}
   }
 
   a {
@@ -71,9 +72,10 @@ export const PostContainer = styled.section`
   }
 
   blockquote {
-    ${tw`mb-4 p-4 border-l-4 border-solid border-blue-300 bg-gray-200`}
+    ${tw`my-2 p-3 border-l-4 border-solid border-blue-300 bg-gray-200 text-black`}
+
     & > p {
-      ${tw`last:m-0 text-xl leading-9`}
+      ${tw`last:m-0 text-lg`}
     }
   }
 
@@ -95,7 +97,7 @@ export const PostContainer = styled.section`
   }
 
   code {
-    ${tw`p-1 rounded font-mono text-base leading-7 text-white bg-gray-600`}
+    ${tw`py-0.5 px-1 rounded font-code text-sm text-white bg-gray-600`}
   }
 
   hr {
@@ -108,17 +110,17 @@ export const PostContainer = styled.section`
   }
 
   th {
-    ${tw`font-bold`}
+    ${tw`font-bold bg-blue-200 text-black`}
   }
 
   table,
   th,
   td {
-    ${tw`font-bold border border-solid border-black`}
+    ${tw`font-bold border border-solid border-custom-text`}
   }
 
   th,
   td {
-    ${tw`p-2 text-left`}
+    ${tw`p-2`}
   }
 `;

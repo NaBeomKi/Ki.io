@@ -13,5 +13,6 @@ export * from "./Post";
 export * from "./Seo";
 export * from "./Table";
 export * from "./Tags";
+export * from "./ThemeToggle";
 export * from "./Toc";
 export * from "./User";

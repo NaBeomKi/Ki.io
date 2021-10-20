@@ -1,39 +1,37 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { graphql } from "gatsby";
-import { App, ContentCard, AllTags, User } from "../components";
+import { App, ContentCard, TagsNavi, User } from "../components";
 import { ContentWrapper } from "../elements";
+import { useDispatch, useTag } from "../store/StoreContext";
+import { ALL, SET_TAG, TAG } from "../constants";
 
-const IndexPage = ({ data }) => {
+const IndexPage = ({ location, data }) => {
   const {
     allMdx: { edges },
   } = data;
+
+  const tag = useTag();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const tagName = new URLSearchParams(location.search).get(TAG);
+    dispatch({ type: SET_TAG, tag: tagName || ALL });
+  }, [dispatch, location.search]);
 
   return (
     <App title="Home">
       <div>
         <ContentWrapper>
           <User />
-          <AllTags />
-          {edges.map((edge) => {
-            const {
-              node: {
-                slug,
-                excerpt,
-                frontmatter: { date, tags, title, featureImage },
-              },
-            } = edge;
-            return (
-              <ContentCard
-                key={slug}
-                title={title}
-                date={date}
-                tags={tags}
-                featureImage={featureImage}
-                slug={slug}
-                excerpt={excerpt}
-              />
-            );
-          })}
+          <TagsNavi />
+          {edges
+            .filter(
+              (edge) => edge.node.frontmatter.tags.includes(tag) || tag === ALL
+            )
+            .map((edge) => {
+              const { node } = edge;
+              return <ContentCard key={node.slug} {...node} />;
+            })}
         </ContentWrapper>
       </div>
     </App>

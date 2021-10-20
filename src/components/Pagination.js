@@ -1,8 +1,8 @@
-import React from "react";
+import React, { memo } from "react";
 import { PaginationWrapper, Span, Strong } from "../elements";
 import { Button, FaIcon } from "./index";
 
-export const Pagination = ({ previous, next }) => {
+export const Pagination = memo(({ previous, next }) => {
   return (
     <PaginationWrapper>
       <div>
@@ -33,4 +33,4 @@ export const Pagination = ({ previous, next }) => {
       </div>
     </PaginationWrapper>
   );
-};
+});

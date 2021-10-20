@@ -1,12 +1,15 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useCallback, memo } from "react";
+import { useTheme } from "../store/StoreContext";
 import { CommentsWrapper } from "../elements";
 
 const src = "https://utteranc.es/client.js";
 
-export const Comments = ({ repo }) => {
+export const Comments = memo(({ repo }) => {
   const containerRef = useRef(null);
+  const theme = useTheme();
 
-  useEffect(() => {
+  const createComment = useCallback(() => {
+    if (!theme) return;
     const comment = document.createElement("script");
 
     const attributes = {
@@ -14,7 +17,7 @@ export const Comments = ({ repo }) => {
       repo,
       "issue-term": "pathname",
       label: "comment",
-      theme: "github-light",
+      theme: `github-${theme}`,
       crossOrigin: "anonymous",
       async: "true",
     };
@@ -24,9 +27,27 @@ export const Comments = ({ repo }) => {
     });
 
     containerRef.current.appendChild(comment);
-  }, [repo]);
+  }, [repo, theme]);
+
+  const postThemeMessage = useCallback(
+    ($target) => {
+      const message = {
+        type: "set-theme",
+        theme: `github-${theme}`,
+      };
+      $target.contentWindow.postMessage(message, src);
+    },
+    [theme]
+  );
+
+  useEffect(() => {
+    const $comment = containerRef.current.querySelector(
+      "iframe.utterances-frame"
+    );
+    $comment ? postThemeMessage($comment) : createComment();
+  }, [createComment, postThemeMessage]);
 
   return <CommentsWrapper ref={containerRef} />;
-};
+});
 
 Comments.displayName = "comment";

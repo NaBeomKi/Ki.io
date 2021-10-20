@@ -88,12 +88,7 @@ module.exports = {
       resolve: "gatsby-plugin-web-font-loader",
       options: {
         google: {
-          families: [
-            `Mulish:n4,i4,n7,i7`,
-            `Noto Sans KR:n4,n7`,
-            `Fira Code`,
-            `Ubuntu Mono`,
-          ],
+          families: [`Fira Code`, `Ubuntu Mono`],
         },
       },
     },
@@ -103,7 +98,7 @@ module.exports = {
       resolve: "gatsby-plugin-robots-txt",
       options: {
         host: metaConfig.siteUrl,
-        sitemap: `${metaConfig.siteUrl}/sitemap.xml`,
+        sitemap: `${metaConfig.siteUrl}/sitemap/sitemap-index.xml`,
         policy: [{ userAgent: "*", allow: "/" }],
       },
     },

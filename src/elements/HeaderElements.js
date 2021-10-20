@@ -2,7 +2,7 @@ import { Link } from "gatsby";
 import tw from "twin.macro";
 
 export const HeaderWrapper = tw.div`
-    fixed h-20 left-0 top-0 right-0 shadow-md bg-white z-50
+    fixed h-20 left-0 top-0 right-0 shadow-md bg-custom-background text-custom-text z-50
 `;
 
 export const HeaderContainer = tw.header`
