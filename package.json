@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "private": true,
   "description": "Ki's gatsby blog template",
-  "author": "beomki69",
+  "author": "beomki",
   "keywords": [
     "gatsby"
   ],
+  "license": "MIT",
   "scripts": {
     "develop": "gatsby develop",
     "start": "gatsby develop",
