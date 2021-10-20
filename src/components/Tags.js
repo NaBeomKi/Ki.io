@@ -17,7 +17,7 @@ export const Tags = memo(({ tags }) => {
 
   return (
     <TagsWrapper>
-      {tags.map((tag) => (
+      {tags.sort().map((tag) => (
         <TagWrapper
           key={tag}
           onClick={onTagClick(tag)}

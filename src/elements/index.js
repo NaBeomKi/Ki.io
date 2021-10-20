@@ -12,5 +12,6 @@ export * from "./PostElements";
 export * from "./TableElements";
 export * from "./TagElements";
 export * from "./TocElements";
+export * from "./ThemeToggleElements";
 export * from "./TypographyElements";
 export * from "./UserElements";

@@ -11,6 +11,8 @@ import {
   A,
 } from "../elements";
 import { FaIcon } from "./FaIcon";
+import { useDispatch } from "../store/StoreContext";
+import { ALL, SET_TAG } from "../constants";
 
 export const Header = memo(() => {
   const data = useStaticQuery(graphql`
@@ -27,6 +29,11 @@ export const Header = memo(() => {
       }
     }
   `);
+  const dispatch = useDispatch();
+
+  const onClickHome = () => {
+    dispatch({ type: SET_TAG, tag: ALL });
+  };
 
   return (
     <HeaderWrapper>
@@ -34,7 +41,7 @@ export const Header = memo(() => {
         <nav>
           <HeaderListsContainer>
             <HeaderList>
-              <NavLink to="/">
+              <NavLink to="/" onClick={onClickHome}>
                 <LogoImg src={data.logo.publicURL} alt="Home" />
               </NavLink>
             </HeaderList>
