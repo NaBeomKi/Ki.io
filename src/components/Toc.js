@@ -11,7 +11,10 @@ export const Toc = memo(({ toc }) => {
   const onAnchorClick = useCallback(
     (url) => (e) => {
       e.preventDefault();
-      document.querySelector(url).scrollIntoView({
+      // Remove # from URL
+      // Not working querySelector: querySelector method uses CSS3 selectors for querying the DOM and CSS3 doesn't support ID selectors that start with a digit
+      // https://stackoverflow.com/questions/37270787/uncaught-syntaxerror-failed-to-execute-queryselector-on-document/37271406
+      document.getElementById(url.slice(1)).scrollIntoView({
         behavior: "smooth",
       });
     },
