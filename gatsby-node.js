@@ -1,3 +1,16 @@
+exports.createSchemaCustomization = ({ actions }) => {
+  const { createTypes } = actions;
+  const typeDefs = `
+    type Mdx implements Node {
+      frontmatter: MdxFrontmatter!
+    }
+    type MdxFrontmatter {
+      featureImage: File @fileByRelativePath
+    }
+  `;
+  createTypes(typeDefs);
+};
+
 exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions;
   // Query for markdown nodes to use in creating pages.
