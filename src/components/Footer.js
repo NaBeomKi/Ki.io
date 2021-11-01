@@ -6,12 +6,12 @@ export const Footer = memo(() => {
     <FooterWrapper>
       <Span>
         &copy; 2021.{" "}
-        <a href="https://github.com/beomki69" target="_blank" rel="noreferrer">
+        <a href="https://github.com/NaBeomKi" target="_blank" rel="noreferrer">
           <Strong>Beomki</Strong>
         </a>
         , Built with{" "}
         <a
-          href="https://github.com/beomki69/gatsby-starter-ki"
+          href="https://github.com/NaBeomKi/gatsby-starter-ki"
           target="_blank"
           rel="noreferrer"
         >
