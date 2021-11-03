@@ -5,7 +5,7 @@ export const TagsNaviWrapper = tw.div`
 `;
 
 export const TagsWrapper = tw.div`
-  flex gap-2 mb-2
+  flex flex-wrap gap-2 mb-2
 `;
 
 export const TagWrapper = styled.button`
