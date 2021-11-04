@@ -5,6 +5,12 @@ module.exports = {
   plugins: [
     "gatsby-plugin-styled-components",
     "gatsby-plugin-image",
+    "gatsby-plugin-react-helmet",
+    "gatsby-plugin-sitemap",
+    "gatsby-plugin-sharp",
+    "gatsby-transformer-sharp",
+    `gatsby-plugin-emotion`,
+    `gatsby-plugin-fontawesome-css`,
     {
       resolve: `gatsby-plugin-google-gtag`,
       options: {
@@ -19,8 +25,6 @@ module.exports = {
         },
       },
     },
-    "gatsby-plugin-react-helmet",
-    "gatsby-plugin-sitemap",
     {
       resolve: "gatsby-plugin-manifest",
       options: {
@@ -58,8 +62,6 @@ module.exports = {
         ],
       },
     },
-    "gatsby-plugin-sharp",
-    "gatsby-transformer-sharp",
     {
       resolve: "gatsby-source-filesystem",
       options: {
@@ -80,7 +82,7 @@ module.exports = {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "posts",
-        path: "./src/posts/",
+        path: "./src/contents/posts/",
       },
       __key: "posts",
     },
@@ -92,8 +94,6 @@ module.exports = {
         },
       },
     },
-    `gatsby-plugin-emotion`,
-    `gatsby-plugin-fontawesome-css`,
     {
       resolve: "gatsby-plugin-robots-txt",
       options: {
