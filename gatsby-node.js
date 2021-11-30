@@ -53,7 +53,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   result.data.allMdx.edges.forEach(({ node, next, previous }) => {
     const { id, slug } = node;
     createPage({
-      path: `/posts/${slug}`,
+      path: `/${slug}`,
       component: require.resolve(`${BASE_PATH}/postPage.js`),
       context: {
         id,

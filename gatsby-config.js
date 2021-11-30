@@ -82,7 +82,7 @@ module.exports = {
       resolve: "gatsby-source-filesystem",
       options: {
         name: "posts",
-        path: "./src/contents/posts/",
+        path: "./src/contents/",
       },
       __key: "posts",
     },
