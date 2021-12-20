@@ -8,7 +8,7 @@ module.exports = {
   email: "beomki69@gmail.com",
   social: {
     twitter: ``, // Your Twitter account
-    github: `https://github.com/beomki69`, // Your GitHub account
+    github: `https://github.com/NaBeomKi`, // Your GitHub account
     facebook: ``, // Your Facebook account
     linkedin: ``, // Your LinkedIn account
     instagram: ``, // Your Instagram account
@@ -16,7 +16,7 @@ module.exports = {
   icon: `src/images/logo.png`, // Add your favicon
   keywords: ["gatsby blog", "gatsby MDX blog"],
   comments: {
-    utterancesRepo: "beomki69/blog-comments", // Your repository for archive comment
+    utterancesRepo: "NaBeomKi/blog-comments", // Your repository for archive comment
   },
   googleAnalyticsId: `G-T9B05YK507`, // Add your google analytics tranking ID
 };

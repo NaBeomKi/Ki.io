@@ -11,6 +11,7 @@
 - 💬 Comment feature (Utterances)
 - 🤖 Google Analytics
 - ⚙ Configurable
+- 🌕 Dark Mode
 
 <h2 align="center">
   <a href="https://beomki.netlify.app/">Welcome to blog!</a>

@@ -13,12 +13,12 @@ export const ContentCard = memo((props) => {
   return (
     <CardWrapper>
       {featureImage && (
-        <Link to={`/posts/${slug}`}>
+        <Link to={`/${slug}`}>
           <FeatureImg featureImage={featureImage} alt={title} />
         </Link>
       )}
       <CardInfoWrapper>
-        <Link to={`/posts/${slug}`}>
+        <Link to={`/${slug}`}>
           <H2>{title}</H2>
         </Link>
         <P>{excerpt}</P>

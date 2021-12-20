@@ -7,7 +7,7 @@ export const Pagination = memo(({ previous, next }) => {
     <PaginationWrapper>
       <div>
         {previous && (
-          <Button className="prev" href={`/posts/${previous.slug}`}>
+          <Button className="prev" href={`/${previous.slug}`}>
             <FaIcon type="far" name="arrow-alt-circle-left" size="2" />
             <div>
               <Span>Previous Post</Span>
@@ -20,7 +20,7 @@ export const Pagination = memo(({ previous, next }) => {
       </div>
       <div>
         {next && (
-          <Button className="next" href={`/posts/${next.slug}`}>
+          <Button className="next" href={`/${next.slug}`}>
             <div>
               <Span>Next Post</Span>{" "}
               <div>

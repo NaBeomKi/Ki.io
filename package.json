@@ -3,15 +3,15 @@
   "version": "1.0.0",
   "private": true,
   "description": "Ki's Tech blog",
-  "author": "beomki",
+  "author": "nabeomki",
   "keywords": [
     "gatsby"
   ],
   "license": "MIT",
   "scripts": {
-    "develop": "gatsby develop",
-    "start": "gatsby develop",
-    "build": "gatsby build",
+    "develop": "npm run clean && GATSBY_GRAPHQL_IDE=playground gatsby develop",
+    "start": "npm run clean && gatsby develop",
+    "build": "npm run clean && gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean"
   },
