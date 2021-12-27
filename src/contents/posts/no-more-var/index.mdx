@@ -1,0 +1,202 @@
+---
+title: "✋ var 멈춰!"
+date: 2021-12-21 01:24:00 +0900
+category: [post]
+tags: [javascript]
+---
+
+_잘못된 내용이 있다면 지적 부탁드립니다._
+
+2021년, 자바스크립트를 가르치는 어딘가의 수업에서 `var`만 가르친다는 이야기가 종종 보입니다.
+옛날 인강이나 자료같은게 아니라 현재의 현장 강의에서요. ~~대체 왜~~
+그리고 저는 더 이상 이러지 말아야한다고 생각해요.
+현 시점에서는 `const`와 `let`을 기본으로 알려주고, `var`의 특성과 차이점을 알려주어야 하지 않을까요?
+
+그래서 말 나온김에 자바스크립트의 변수 선언 방식과 `var`의 문제를 정리해보려고 합니다.
+이 내용이 언젠가 그리고 누군가에게는 도움이 되지... 않을까요...?
+
+# 태초에 `var`가 있었으니...
+
+`var`는 과거 자바스크립트의 유일한 변수 선언 방식이었습니다.
+그리고 ES6에서 새로운 변수 선언 방식인 `const`와 `let`이 등장했죠.
+새로운 것의 등장은 언제나 기존의 문제점을 해결하기 위해 등장합니다.
+만약 기존의 것이 이미 완벽하다면 새로운 것은 필요가 없겠죠.
+그럼 `var`는 어떤 문제를 가지고 있었고, 새로운 변수 선언 방식은 어떤 문제를 해결했을까요?
+
+## 1. 재선언과 재할당
+
+먼저 `var`의 재선언과 재할당부터 봅시다.
+
+```js
+var name = "ki";
+name = "na";
+var name = "beom";
+```
+
+`var`의 경우는 재선언과 재할당 모두 가능하고, 아무런 오류가 발생하지 않습니다.
+이 처럼 아무런 오류가 발생하지 않기 때문에 만약 어딘가에서 이미 사용 중이라는 사실을 잊고 변수를 재선언하게되는 상황이 생길 수도 있습니다.그렇다면 에러가 어디에서 발생하는지 알기가 어려워지겠죠.
+
+반면에 `const`와 `let`의 경우, 재선언이 불가능 합니다.
+
+```js
+const name = "ki";
+const name = "na"; // Uncaught SyntaxError: Identifier 'name' has already been declared
+```
+
+동일한 식별자(변수명)를 재선언하게 된다면 위와 같은 에러가 발생합니다.
+
+그럼 `const`와 `let`의 차이는 무엇일까요? 이 둘의 차이는 재할당입니다.
+
+```js
+const name = "ki";
+name = "na"; // Uncaught TypeError: Assignment to constant variable.
+```
+
+```js
+let name = "ki";
+name = "na";
+```
+
+`const`는 상수(_constants_)라는 의미로, 재할당이 불가능하기 때문에 위와 같은 에러가 발생합니다.
+하지만 `let`은 재할당이 가능합니다. 따라서 나중에 값이 변경되어야 하는 변수가 필요할 때 사용할 수 있습니다.
+꼭 염두해두셔야하는 부분은 `const`를 사용하더라도 변수에 할당한 배열이나 객체 내부의 값을 수정하는 것은 재할당이 아니기 때문에 가능하다는 점입니다.
+
+```js
+const arr = [1, 2, 3, 4];
+arr.push(5); // 가능 - 재할당이 아닙니다.
+arr = [9, 8, 7, 6]; // Uncaught TypeError: Assignment to constant variable.
+// 에러 - 재할당입니다.
+```
+
+## 2. 호이스팅(Hoisting)
+
+`var`부터 냅다 예제를 봅시다.
+
+```js
+console.log(myName); // Uncaught ReferenceError: myName is not defined
+```
+
+위 코드는 주석과 같은 오류를 뱉어냅니다. 너무 당연하죠 `myName`라는 변수는 어디에도 선언되지 않았습니다.
+그럼 다음 예제는 어떨까요?
+
+```js
+console.log(myName); // undefined 출력
+var myName = "ki";
+```
+
+이번 예제는 좀 다릅니다. 결과는 `undefined`가 나오게 되죠.
+변수를 선언하기도 전에 출력을 시도했음에도 이전 예제와 같은 에러가 발생하지 않고 `undefined`라는 결과가 나왔습니다.
+왜일까요? 아래의 예제를 먼저 봅시다.
+
+```js
+var myName;
+console.log(myName); // undefined 출력
+var myName = "ki";
+```
+
+이 예제는 좀 더 합당하게 느껴질 겁니다.
+가장 먼저 변수를 선언했지만 아무것도 할당하지 않았기 때문에 `undefined`가 출력되고, 출력 이 후 다시 변수를 선언하면서 문자열을 할당했으니까요.
+
+두번째 예제는 마치 세번째 예제처럼 동작합니다.
+이처럼 변수를 아직 선언하지 않았는데도 불구하고 마치 선언된 것처럼 스코프(유효 범위)의 선두로 끌어올려지는 듯한 현상을 호이스팅이라고 합니다.
+
+추가로 함수선언문(`function func(){}`)도 동일한 호이스팅 현상이 있습니다.
+
+이러한 상황이 왜 문제가 되느냐? 아직 선언하지 않은 변수를 사용하려다가 원치 않는 결과가 발생할 수도 있고, 코드를 읽다보면 변수를 어디서 선언했는지 찾기 어려울 수도 있습니다.
+![대충 강하늘짤](images/unnamed.jpeg) _선언되지 않은 변수의 등장이라... ~~재밌어지겠네...~~(재미없음...)_
+
+반면에, `const`와 `let`은 아직 선언되지 않았다면, 사용할 수 없습니다.
+
+```js
+console.log(name);
+const name = "ki"; // Uncaught ReferenceError: name is not defined
+```
+
+이로 인해 코드의 가독성을 높일 수 있습니다.
+
+## 3.스코프(Scope)
+
+변수 스코프란 변수가 유효한 범위를 말합니다. 그리고 `var`는 함수스코프입니다.
+즉, 함수 블록을 기준으로 유효 범위가 나뉜다는 말입니다 _(블록은 중괄호(`{}`)로 감싼 내부를 말합니다.)_
+예제를 볼까요.
+
+```js
+function outerFunc() {
+  // outerName 유효범위
+  var outerName = "na";
+  function innerFunc() {
+    // innerName의 유효범위
+    var innerName = "ki";
+    // innerName의 유효범위
+  }
+  console.log(myName); // Uncaught ReferenceError: innerName is not defined
+  // 함수 innerFunc의 바깥은 innerName의 유효범위를 벗어나므로 접근할 수 없습니다.
+  // outerName 유효범위
+}
+```
+
+변수 `innerName`은 `innerFunc` 함수 안에서 선언되었습니다.
+함수 블럭을 유효 범위로 가지므로(함수스코프) `innerFunc` 함수 바깥의 입장에서 `innerName`은 선언된 적 없는 변수입니다.
+함수 외부에서 함수 내부의 변수에 접근할 수 없는 것이죠. (반대로 내부 함수 블록에서 바깥에 선언된 변수에 접근하는 것은 가능합니다.)
+
+따라서 아래와 같은 상황도 가능합니다.
+
+```js
+// myName의 유효범위
+var i = 0;
+while (i < 10) {
+  var myName = "ki";
+  i++;
+}
+
+console.log(myName); // "ki" 출력
+// myName의 유효범위
+```
+
+변수 `myName`은 반복문 안에서 선언되었지만 값이 제대로 출력되는 것을 확인할 수 있습니다
+이는 함수가 아니라 반복문이기 때문입니다.
+이 상황이 앞선 호이스팅 문제나 재선언/재할당의 문제와 겹쳐진다면 어떤 상황이 생길지 상상이 가시나요?
+
+```js
+// myName의 유효범위
+console.log(myName); // undefined 출력
+
+var i = 0;
+var j = 0;
+while (i < 10) {
+  while (j < 10) {
+    var myName = "ki";
+    j++;
+  }
+  var myName = "na";
+  console.log(myName); // na 출력
+  i++;
+}
+// myName의 유효범위
+```
+
+아무런 에러가 발생하지 않았고, `undefined`와 `na`가 출력되었습니다. 이 역시 마찬가지로 코드의 가독성이 떨어지게 됩니다.
+
+반면에 `const`와 `let`은 블록스코프입니다. 블록(`{}`)을 기준으로 유효 범위가 나뉘게 되죠.
+
+```js
+let i = 0;
+while (i < 10) {
+  const myName = "ki";
+  // myName의 유효범위
+  // 앞서 설명했듯이 const와 let은 선언 이전에 사용할 수 없고
+  // 선언 이후에 사용 가능하므로 선언 다음부터 유효범위로 표현했습니다.
+  i++;
+  // myName의 유효범위
+}
+
+console.log(myName); // Uncaught ReferenceError: myName is not defined
+```
+
+`function`이 기준이었던 `var`와 달리, 블록이 기준이기 때문에 `while`문 바깥에서도 내부에 선언된 변수를 찾을 수 없기에 에러가 발생합니다.
+
+# 저는 `var`를 써야하는데요?!
+
+이전 브라우저들의 호환성 등의 이유로 `var`등의 기존 문법을 사용하거나, 제이쿼리를 사용하는 당신을 위해서 최신 ES6+ 문법을 사용해도 ES5 이전의 코드로 컴파일해주는 Babel이 있습니다! 🥳
+
+이제는 `var` 보다는 `const`를 기본으로 사용하고, 이 후 변수의 값을 재할당해 바꿔야 하는 상황에서는 `let`을 사용해보세요!
