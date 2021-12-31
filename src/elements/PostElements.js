@@ -19,11 +19,14 @@ export const PostContainer = styled.section`
   h6 {
     scroll-margin-top: 6rem;
     ${tw`my-8 font-bold`}
-    & > a {
+    a {
       ${tw`flex items-center h-full text-current`}
-      & > svg {
+      svg {
         ${tw`fill-current`}
       }
+    }
+    code {
+      font-size: inherit;
     }
   }
 
@@ -97,7 +100,7 @@ export const PostContainer = styled.section`
   }
 
   code {
-    ${tw`py-0.5 px-1 rounded font-code text-sm text-white bg-gray-600`}
+    ${tw`inline-block py-0.5 px-1 rounded font-code text-sm leading-tight text-white bg-gray-600`};
   }
 
   hr {
