@@ -3,14 +3,6 @@ const metaConfig = require("./gatsby-meta-config");
 module.exports = {
   siteMetadata: metaConfig,
   plugins: [
-    "gatsby-plugin-styled-components",
-    "gatsby-plugin-image",
-    "gatsby-plugin-react-helmet",
-    "gatsby-plugin-sitemap",
-    "gatsby-plugin-sharp",
-    "gatsby-transformer-sharp",
-    `gatsby-plugin-emotion`,
-    `gatsby-plugin-fontawesome-css`,
     {
       resolve: `gatsby-plugin-google-gtag`,
       options: {
@@ -102,5 +94,13 @@ module.exports = {
         policy: [{ userAgent: "*", allow: "/" }],
       },
     },
+    "gatsby-plugin-styled-components",
+    "gatsby-plugin-image",
+    "gatsby-plugin-react-helmet",
+    "gatsby-plugin-sitemap",
+    "gatsby-plugin-sharp",
+    "gatsby-transformer-sharp",
+    `gatsby-plugin-emotion`,
+    `gatsby-plugin-fontawesome-css`,
   ],
 };
